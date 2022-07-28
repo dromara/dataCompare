@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vince.xq.dataCompare.dao.DbConfigDao">
+
+    <resultMap type="com.vince.xq.dataCompare.model.DbConfigEbo" id="dbConfigMap">
+        <result property="id" column="id" jdbcType="BIGINT" javaType="Long"/>
+        <result property="connectName" column="connect_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="type" column="type" jdbcType="VARCHAR" javaType="String"/>
+        <result property="url" column="url" jdbcType="VARCHAR" javaType="String"/>
+        <result property="user" column="user" jdbcType="VARCHAR" javaType="String"/>
+        <result property="pwd" column="pwd" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="dbConfigMap">
+        SELECT
+            s.id,s.connect_name,s.type,s.url,s.user,s.pwd,s.create_time
+        FROM
+            db_config AS s;
+    </select>
+
+    <insert id="insert" parameterType="com.vince.xq.dataCompare.model.DbConfigEbo">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@IDENTITY as id
+        </selectKey>
+        insert into db_config(connect_name,type,url,user,pwd,create_time)
+        values(
+        #{connectName},
+        #{type},
+        #{url},
+        #{user},
+        #{pwd},
+        #{createTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.vince.xq.dataCompare.model.DbConfigEbo">
+       update db_config set connect_name=#{connectName},type=#{type},url=#{url},user=#{user},pwd=#{pwd},create_time=#{createTime}
+       where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from db_config where id=#{id}
+    </delete>
+
+    <select id="getDbConfigById" parameterType="Long" resultMap="dbConfigMap">
+        select s.id,s.connect_name,s.type,s.url,s.user,s.pwd,s.create_time from db_config s where id=#{id}
+    </select>
+
+
+
+</mapper>

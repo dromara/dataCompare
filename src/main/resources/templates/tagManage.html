@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>博客管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/admin/css/public.css}" media="all"/>
+
+</head>
+<body class="childrenBody">
+<blockquote class="layui-elem-quote quoteBox" style="border-left: 5px solid #f2f2f2">
+    <form class="layui-form">
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal addTagBtn"><cite>添加标签</cite></a>
+        </div>
+    </form>
+</blockquote>
+
+<table id="tagList" lay-filter="tagList"></table>
+
+<script type="text/html" id="categoryListBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/admin/js/tagList.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vince.xq.dataCompare.dao.JobConfigDao">
+
+    <resultMap type="com.vince.xq.dataCompare.model.JobConfigEbo" id="jobConfigMap">
+        <result property="id" column="id" jdbcType="BIGINT" javaType="Long"/>
+        <result property="originTableName" column="origin_table_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="originTablePrimary" column="origin_table_primary" jdbcType="VARCHAR" javaType="String"/>
+        <result property="originTableFields" column="origin_table_fields" jdbcType="VARCHAR" javaType="String"/>
+        <result property="toTableName" column="to_table_name" jdbcType="VARCHAR" javaType="String"/>
+        <result property="toTablePrimary" column="to_table_primary" jdbcType="VARCHAR" javaType="String"/>
+        <result property="toTableFields" column="to_table_fields" jdbcType="VARCHAR" javaType="String"/>
+        <result property="dbConfigId" column="db_config_id" jdbcType="BIGINT" javaType="Long"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result property="schduleTime" column="schdule_time" jdbcType="VARCHAR" javaType="String"/>
+        <result property="schduleStatus" column="schdule_status" jdbcType="INTEGER" javaType="Integer"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="jobConfigMap">
+        SELECT
+            s.id,s.origin_table_name,s.origin_table_primary,s.origin_table_fields,s.to_table_name,s.to_table_primary,s.to_table_fields,s.db_config_id
+             ,s.create_time,s.schdule_time,s.schdule_status
+        FROM
+            job_config AS s;
+    </select>
+
+    <insert id="insert" parameterType="com.vince.xq.dataCompare.model.JobConfigEbo">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@IDENTITY as id
+        </selectKey>
+        insert into job_config(origin_table_name,origin_table_primary,origin_table_fields,to_table_name,to_table_primary,to_table_fields,db_config_id,
+        create_time,schdule_time,schdule_status)
+        values(
+        #{originTableName},
+        #{originTablePrimary},
+        #{originTableFields},
+        #{toTableName},
+        #{toTablePrimary},
+        #{toTableFields},
+        #{toTableFields},
+        #{dbConfigId},
+        #{createTime},
+        #{schduleTime},
+        #{schduleStatus}
+        )
+    </insert>
+
+    <delete id="delete" parameterType="Long">
+        delete from job_config where id=#{id}
+    </delete>
+
+    <select id="getJobConfigById" parameterType="Long" resultMap="jobConfigMap">
+        SELECT
+            s.id,s.origin_table_name,s.origin_table_primary,s.origin_table_fields,s.to_table_name,s.to_table_primary,s.to_table_fields,s.db_config_id
+             ,s.create_time,s.schdule_time,s.schdule_status
+        FROM
+            job_config AS s where id=#{id};
+    </select>
+
+
+</mapper>

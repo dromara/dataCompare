@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>add dbConfig</title>
+    <link rel="stylesheet" th:href="@{/editor/css/editormd.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+<div>
+    <div class="layui-form" style="padding-top: 30px;width:500px;padding-left: 30px;">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">db config</label>
+            <div class="layui-input-block" style="width: 180px">
+
+                <select name="city" id="dbConfigSelect" lay-verify="required" onChange="dbConfigChange()">
+                    <option value=''>please select db config</option>
+                    <option th:each="map:${dbConfig}" th:value="${map.id}" th:text="${map.type}+'_'+${map.connectName}"/>
+                </select>
+
+            </div>
+        </div>
+
+        <div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">origin_db</label>
+                <div class="layui-input-block" style="width: 180px">
+
+                    <select name="city" id="typeSelector" lay-verify="required">
+                        <option value=''>please select db</option>
+                        <option th:each="map:${dbConfig}" th:value="${map.id}" th:text="${map.type}+'_'+${map.connectName}"/>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">origin_table</label>
+                <div class="layui-input-block" style="width: 180px">
+
+                    <select name="city" id="origin_table_select" lay-verify="required">
+                        <option value=''>please select table</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">to_db</label>
+                <div class="layui-input-block" style="width: 180px" >
+                    <select name="city" id="to_db_select" lay-verify="required">
+                        <option value=''>please select db</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">to_table</label>
+                <div class="layui-input-block" style="width: 180px" >
+                    <select name="city" id="to_table_select" lay-verify="required">
+                        <option value=''>please select table</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">to_table</label>
+                <div class="layui-input-block" style="width: 180px">
+
+                    <select name="city" id="typeSelector" lay-verify="required">
+                        <option value=''>please select db</option>
+                        <option th:each="map:${dbConfig}" th:value="${map.id}" th:text="${map.type}+'_'+${map.connectName}"/>
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">user</label>
+            <div class="layui-input-block" style="width: 180px">
+                <input type="text" name="user" id="nameInput" required  lay-verify="required" placeholder="please add userName" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">password</label>
+            <div class="layui-input-inline" style="width: 180px">
+                <input type="password" name="password" id="inputPassword" required lay-verify="required" placeholder="please add password" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-filter="formDemo" onclick="testConnection()">testConnection</button>
+                <button class="layui-btn" lay-filter="formDemo" onclick="save()">save</button>
+                <button type="reset" class="layui-btn layui-btn-primary">reset</button>
+            </div>
+        </div>
+    </div>
+
+
+    <iframe src="" frameborder="0" name="frameName" hidden></iframe>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/editor/editormd.min.js}"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/admin/js/addBlog.js}"></script>
+
+<script type="text/javascript">
+
+    function dbConfigChange(){
+        var dbConfig=$("#dbConfigSelect").val();
+        $.ajax({
+            type: "get",
+            url: "/db/get_all_db?dbConfigId="+dbConfig,
+            success: function(data){
+                if (data.code==0){
+                    $("#bindChem option:gt(0)").remove();//重新加载前，移除第一个以外的option
+
+                    for (var i in data.data) {
+                        var jsonObj =data[i];
+                        var optionstring = "";
+                        for (var j = 0; j < jsonObj.length; j++) {
+                            optionstring += "<option value=\"" + jsonObj[j].ID + "\" >" + jsonObj[j].chinesename + "</option>";
+                        }
+                        $("#dpdField1").html("<option value='请选择'>请选择...</option> "+optionstring);
+                    }
+                    //alert("测试连接成功");
+                }
+                else if (data.code=-1){
+                    layer.alert(data.msg);
+                }
+            }
+        });
+
+        $.ajax({
+            url: "/job/get_all_db",    //后台webservice里的方法名称
+            type: "get",
+            dataType: "json",
+            contentType: "application/json",
+            traditional: true,
+            success: function (data) {
+                for (var i in data) {
+                    var jsonObj =data[i];
+                    var optionstring = "";
+                    for (var j = 0; j < jsonObj.length; j++) {
+                        optionstring += "<option value=\"" + jsonObj[j].ID + "\" >" + jsonObj[j].chinesename + "</option>";
+                    }
+                    $("#dpdField1").html("<option value='请选择'>请选择...</option> "+optionstring);
+                }
+            },
+            error: function (msg) {
+                alert("出错了！");
+            }
+        });
+    }
+
+    function testConnection(){
+        var type=$("#typeSelector").val();
+        var url=$("#urlInput").val();
+        var user=$("#nameInput").val();
+        var pwd=$("#inputPassword").val();
+        if(type.length==0){
+            layer.alert('type is empty')
+        }
+
+        $.ajax({
+            type: "post",
+            url: "/db/test_connection",
+            data: {
+                "type":type,
+                "url":url,
+                "user":user,
+                "pwd":pwd
+            },
+            dataType: "json",
+            success: function(data){
+                if (data.code==0){
+                    layer.alert('connect success')
+                    //alert("测试连接成功");
+                }
+                else if (data.code=-1){
+                    layer.alert(data.msg);
+                }
+            }
+        });
+    }
+
+    function save(){
+        var type=$("#typeSelector").val();
+        var url=$("#urlInput").val();
+        var user=$("#nameInput").val();
+        var pwd=$("#inputPassword").val();
+        if(type.length==0){
+            layer.alert('type is empty')
+        }
+        $.ajax({
+            type: "post",
+            url: "/db/insert",
+            data: {
+                "type":type,
+                "url":url,
+                "user":user,
+                "pwd":pwd
+            },
+            dataType: "json",
+            success: function(data){
+                if (data.code==0){
+                    alert("添加成功");
+                    //layer.alert("添加成功");
+                    window.location.href="/db/dbConfig.html";
+                }
+                else if (data.code=-1){
+                    layer.alert(data.msg);
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

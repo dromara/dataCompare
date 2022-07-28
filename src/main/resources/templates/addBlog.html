@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>添加博客</title>
+    <link rel="stylesheet" th:href="@{/editor/css/editormd.css}"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+<div>
+    <form class="layui-form" action="checkAddBlog" method="post" id="addBlogForm" target="frameName">
+        <div class="layui-form-item" style="margin: 1%">
+            <div style="width: 40%;float: left;text-align: center">
+                <input type="text" name="articleTitle" id="articleTitle" placeholder="请输入博客标题" autocomplete="off" 
+                       class="layui-input">
+            </div>
+            <div style="width: 18%;float: left;text-align: center;margin-left: 1%">
+                <select  lay-filter="chooseCate" id="categorySelect">
+                    <option value="">请选择分类</option>
+                    <option th:each="category :${categories}" th:title="${category.cid}">[[${category.CName}]]</option>
+                </select>
+            </div>
+            <input type="hidden" name="category" id="hiddenCategory">
+
+            <div style="width: 30%;float: left;text-align: center;margin-left: 1%">
+                <input type="text"  id="chooseTags" title="" placeholder="请点击选择标签"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <input type="hidden" name="articleId" id="articleId">
+
+            <div style="margin: 10px;" hidden id="id">
+                <input type="checkbox" style="float: left;margin: 10px;width: 50px" id="tagCB"
+                       th:each="tag: ${tags}" th:value="${tag.tagId}" th:title="${tag.tagName}">
+            </div>
+            <input type="hidden" name="tags" id="hiddenTags">
+            <div style="width: 8%;float: left;text-align: center;margin-left: 1%">
+                <input type="checkbox"  checked="" name="status" lay-skin="switch" lay-filter="switchTest" lay-text="发布|保存">
+            </div>
+
+        </div>
+        <div class="layui-form-item" style="margin: 1%">
+            <div style="width: 90%;float: left;text-align: center">
+                <textarea placeholder="请输入摘要"  class="layui-textarea" name="outline" id="outline"></textarea>
+            </div>
+            <div style="width: 8%;height:100px;float: left;margin-left: 1%">
+                <button style="display:block;margin:30px auto"  id="buttonSubmit" type="button" lay-submit lay-filter="formSubmit"
+                        class="layui-btn layui-btn-radius">发布
+                </button>
+            </div>
+        </div>
+        <div id="layout">
+            <div id="test-editormd">
+                <textarea style="display: none" name="articleContent"  id="articleContent"></textarea>
+                <textarea class="editormd-html-textarea" ></textarea>
+            </div>
+        </div>
+    </form>
+    <iframe src="" frameborder="0" name="frameName" hidden></iframe>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/editor/editormd.min.js}"></script>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/admin/js/addBlog.js}"></script>
+
+<script type="text/javascript">
+    var testEditor;
+    window.onload = function () {
+        testEditor = editormd("test-editormd", {
+            placeholder: '开始创作吧',  //默认显示的文字，这里就不解释了
+            width: "98%",
+            height: "700px",
+            syncScrolling: "single",
+            path: "/editor/lib/",   //就是editor的lib目录
+            theme: "light",//工具栏主题
+            previewTheme: "light",//预览主题
+            saveHTMLToTextarea: false,
+            emoji: true,
+            taskList: true,
+            autoFocus: false,
+            tocm: true,         // Using [TOCM]
+            tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true,             // 开启流程图支持，默认关闭
+            sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+            imageUpload: true,     //开启图片上传
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "imgUpload", //上传的路径，就是mvc的controller路径
+
+            toolbarIcons: function () {  //自定义工具栏，后面有详细介绍
+                return editormd.toolbarModes['full']; // full, simple, mini
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

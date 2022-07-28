@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet">
+    <title>登录</title>
+
+</head>
+<style>
+    body {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+
+    }
+
+    .login {
+        height: 200px;
+        width: 260px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -150px 0 0 -150px;
+        z-index: 99;
+    }
+
+    .login h1 {
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .login_btn {
+        width: 100%;
+    }
+</style>
+
+<body style="background-image: url('/image/bg.png')">
+<!--登录背景-->
+<div class="login">
+    <h1 >用户登录</h1>
+    <form class="layui-form" id="login_form" th:action="@{/login/login}" method="post">
+        <div class="layui-form-item">
+            <input class="layui-input" id="userId" name="userId" placeholder="账号"
+                   lay-verify="required" type="text" autocomplete="off" maxlength="11">
+        </div>
+        <p style="color: red">[[${msg}]]</p>
+        <div class="layui-form-item">
+            <input class="layui-input" id="password" name="password" placeholder="密码" lay-verify="required"
+                   type="password" autocomplete="off" max="20">
+        </div>
+    </form>
+    <button class="layui-btn login_btn" lay-submit="" lay-filter="login" id="submit"
+            onclick="login()">Login
+    </button>
+</div>
+<script type="text/javascript">
+    function login() {
+        var id = document.getElementById("userId").value;
+        var pwd = document.getElementById("password").value;
+
+        if (id.length === 0) {
+            alert("账号不能为空，请重新输入！");
+        } else {
+            if (pwd.length === 0) {
+                alert("密码不能为空，请重新输入！")
+            }
+            else
+                document.getElementById("login_form").submit();
+        }
+    }
+</script>
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript" th:src="@{/layui/layui.all.js}"></script>
+
+</body>
+</html>

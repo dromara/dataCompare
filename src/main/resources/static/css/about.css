@@ -1,0 +1,160 @@
+﻿.about-ground {
+    position: absolute;
+    top: 60px;
+    z-index: 8
+}
+
+.sketch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.hasAnim {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #3b87a5), color-stop(1, #1c1f22));
+    position: absolute;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+
+.about-banner {
+    height: 260px;
+    background-color: gray;
+    color: #525251
+}
+
+.about-banner .about-title {
+    position: relative;
+    z-index: 9;
+    padding-top: 70px;
+    color: #fff;
+    text-align: center
+}
+
+.about-banner .about-title h1 {
+    font-size: 2.5rem
+}
+
+.about-banner .about-title p {
+    font-size: 1.5rem
+}
+
+.container-fixed {
+    margin-top: 1rem
+}
+
+.container-inner article {
+    padding: 10px
+}
+
+.container-inner article section {
+    padding: 20px;
+    background: #fff;
+    font-size: 1rem
+}
+
+.container-inner article section code {
+    background: rgba(27, 31, 35, .05);
+    padding: .2rem .4rem;
+    color: #bd4147;
+    border-radius: 4px;
+    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+}
+
+.container-inner article section p {
+    margin: 1.5rem 0;
+    padding-left: 18px;
+    font-family: Raleway, Segoe UI, Lucida Grande, Helvetica, Arial, Microsoft YaHei;
+    line-height: 1.75rem
+}
+
+.container-inner article section ul, .container-inner article section span {
+    padding-left: 18px;
+}
+
+.container-inner article section ul li {
+    line-height: 2rem
+}
+
+.container-inner article section a {
+    color: #0366d6
+}
+
+.container-inner article section h1 {
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    border-left: .25rem solid #6bc30d;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.5rem
+}
+
+.link-list {
+    margin-top: 10px
+}
+
+.link-list li {
+    float: left;
+    width: 25%
+}
+
+.link-list .pd-lr-10 {
+    padding: 0 10px 20px
+}
+
+.link-list li a {
+    display: block;
+    padding: 20px;
+    background: #fff
+}
+
+.link-list li img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%
+}
+
+.link-list li h3 {
+    overflow: hidden;
+    padding: 10px 15px 9px;
+    height: 21px
+}
+
+.link-list li p {
+    clear: both;
+    display: -webkit-box;
+    overflow: hidden;
+    margin-top: 1rem;
+    height: 60px;
+    text-overflow: ellipsis;
+    font-size: 13px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3
+}
+
+.blog-list li, .hot-list li a, .icon-search, .lab-list li a, .link-list li a, .muntime-btn a, .nav-list li a, .resource-list li a, .tag a {
+    transition: all .3s ease-in-out
+}
+
+.blog-list li:hover, .lab-list li a:hover, .link-list li a:hover, .resource-list li a:hover {
+    box-shadow: 2px 5px 14px #c5c5c5;
+    -webkit-transform: translate3d(0, -3px, 0);
+    transform: translate3d(0, -2px, 0)
+}
+
+@media screen and (max-width: 1024px) {
+    .link-list li {
+        width: 50%
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .link-list li {
+        width: 100%
+    }
+}

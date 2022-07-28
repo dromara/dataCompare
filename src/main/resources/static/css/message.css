@@ -1,0 +1,125 @@
+﻿.msg-remark {
+    background: #FFF;
+    padding: 15px;
+    margin-top: 1rem;
+    text-align: center
+}
+
+.msg-remark h1 {
+    font-weight: 700;
+    font-size: 2rem
+}
+
+.msg-remark p {
+    font-size: 1.25rem;
+    margin: 1rem 0
+}
+
+.textarea-wrap.message {
+    background-color: #fff;
+    padding: 15px
+}
+
+.message-list {
+    position: relative;
+    margin-bottom: 10px
+}
+
+.message-list img {
+    width: 22px;
+    height: 22px
+}
+
+.message-list li:first-child {
+    border-top: 0
+}
+
+.message-list li {
+    background: #fff;
+    padding: 15px;
+    border-top: 1px dotted grey
+}
+
+.message-list .comment-content, .message-list .info, .message-list .replycontainer {
+    margin-left: 53px
+}
+
+.message-list .info-footer {
+    font-size: 13px
+}
+
+.message-list .info, .message-list .replycontainer {
+    padding-top: 5px
+}
+
+.message-list .replycontainer .layui-form-item {
+    margin-bottom: 5px
+}
+
+.message-list .info {
+    overflow-x: hidden
+}
+
+.message-list .info span {
+    padding-right: 5px
+}
+
+.message-list .info img {
+    margin-top: -2px
+}
+
+.message-list .info .username {
+    color: #01AAED
+}
+
+.message-list .info .btn-reply {
+    color: #009688
+}
+
+.message-list .comment-content {
+    padding: 2px 0 5px 0;
+    min-height: 30px;
+    font-size: 13px;
+    word-break: break-all
+}
+
+.message-list hr {
+    margin-left: 53px
+}
+
+.comment-parent > img {
+    width: 45px;
+    height: 45px;
+    margin: 5px 5px 5px 0;
+    position: absolute;
+    border-radius: 50px
+}
+
+.comment-child > img {
+    width: 40px;
+    height: 40px;
+    margin: 5px 5px 5px 0;
+    position: absolute;
+    border-radius: 50px
+}
+
+.comment-child {
+    margin-left: 53px;
+    min-height: 50px
+}
+
+.comment-child .info {
+    margin-left: 48px;
+    font-size: 12px;
+    line-height: 20px
+}
+
+.areaImg {
+    width: 12px !important;
+    height: 13px !important
+}
+
+.fa-map-marker {
+    margin: 0 5px;
+    font-size: 15px;
+}
