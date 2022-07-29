@@ -6,7 +6,7 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 
 #### 软件架构
 
-![输入图片说明](image6.png)
+![image](https://user-images.githubusercontent.com/28300167/181693498-683f6676-aa38-4635-82d1-57cb9263fbd3.png)
 
 技术栈:
 
