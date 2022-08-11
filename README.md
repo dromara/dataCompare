@@ -30,6 +30,8 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 
 ![img.png](img.png)
 
+#### 技术交流
+![image](https://user-images.githubusercontent.com/28300167/184055352-e972f104-1d68-4fc9-8b11-4d85cf2caf39.png)
 
 选择主键
 选择对比字段
