@@ -13,11 +13,11 @@ CREATE TABLE `db_config` (
 
 CREATE TABLE `job_config` (
                              `id` int(11) NOT NULL AUTO_INCREMENT,
-                             `origin_table_name` varchar(255) NOT NULL,
-                             `origin_table_primary` varchar(255) NOT NULL,
-                             `origin_table_fields` varchar(255) NOT NULL,
+                             `origin_table_name` varchar(255) DEFAULT NULL,
+                             `origin_table_primary` varchar(255) DEFAULT NULL,
+                             `origin_table_fields` varchar(255) DEFAULT NULL,
                              `to_table_name` varchar(255) DEFAULT NULL,
-                             `to_table_primary` varchar(255) NOT NULL,
+                             `to_table_primary` varchar(255) DEFAULT NULL,
                              `to_table_fields` varchar(255) DEFAULT NULL,
                              `db_config_id` int(11) DEFAULT NULL,
                              `create_time` datetime DEFAULT NULL,

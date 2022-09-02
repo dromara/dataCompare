@@ -107,14 +107,14 @@ public class JobController {
             target.put("msg", e.getMessage());
         }
         return target;
-    }
+    }*/
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public JSONObject delete(Long id) {
         JSONObject target = new JSONObject();
         try {
-            dbService.delete(id);
+            jobService.delete(id);
             target.put("code", Constant.successCode);
             target.put("msg","delete success");
         } catch (Exception e) {
@@ -122,5 +122,25 @@ public class JobController {
             target.put("msg", e.getMessage());
         }
         return target;
-    }*/
+    }
+
+    @RequestMapping(value = "/fields_compare", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject fieldsCompare(List<String> originTableFields,List<String> toTableFields) {
+        JSONObject target = new JSONObject();
+        try {
+            boolean flag= jobService.fieldsCompare(originTableFields,toTableFields);
+            if(flag){
+                target.put("code", Constant.successCode);
+                target.put("msg","fields compare success");
+            }else {
+                target.put("code", Constant.errCode);
+                target.put("msg","fields compare failed");
+            }
+        } catch (Exception e) {
+            target.put("code", Constant.errCode);
+            target.put("msg", e.getMessage());
+        }
+        return target;
+    }
 }

@@ -6,7 +6,7 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 
 #### 软件架构
 
-![image](https://user-images.githubusercontent.com/28300167/181693498-683f6676-aa38-4635-82d1-57cb9263fbd3.png)
+![输入图片说明](image77.png)
 
 技术栈:
 
@@ -30,8 +30,12 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 
 ![img.png](img.png)
 
+
 #### 技术交流
-![image](https://user-images.githubusercontent.com/28300167/184055352-e972f104-1d68-4fc9-8b11-4d85cf2caf39.png)
+
+![输入图片说明](image_weixin.png)
+
+
 
 选择主键
 选择对比字段

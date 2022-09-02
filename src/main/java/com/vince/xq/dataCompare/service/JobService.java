@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author xiaoqiu2017wy@163.com
@@ -36,18 +38,18 @@ public class JobService {
     @Autowired
     private DbConfigDao dbConfigDao;
 
-    public void testStr(){
+    public void testStr() {
         System.out.println(111);
     }
 
-    public JobConfigEbo getDbConfigEboById(Long id){
+    public JobConfigEbo getDbConfigEboById(Long id) {
         return jobConfigDao.getJobConfigById(id);
     }
 
-    public void insert(String originTableName,String originTablePrimary,String originTableFields, String toTableName,
-                       String toTablePrimary,String toTableFields,int dbConfigId,
-                       String schduleTime,int schduleStatus) {
-        JobConfigEbo jobConfigEbo=new JobConfigEbo();
+    public void insert(String originTableName, String originTablePrimary, String originTableFields, String toTableName,
+                       String toTablePrimary, String toTableFields, int dbConfigId,
+                       String schduleTime, int schduleStatus) {
+        JobConfigEbo jobConfigEbo = new JobConfigEbo();
         jobConfigEbo.setOriginTableName(originTableName);
         jobConfigEbo.setOriginTablePrimary(originTablePrimary);
         jobConfigEbo.setOriginTableFields(originTableFields);
@@ -57,7 +59,7 @@ public class JobService {
         jobConfigEbo.setToTableFields(toTableFields);
         jobConfigEbo.setDbConfigId(dbConfigId);
         jobConfigEbo.setSchduleStatus(schduleStatus);
-        if(StringUtils.isBlank(schduleTime)){
+        if (StringUtils.isBlank(schduleTime)) {
             jobConfigEbo.setSchduleTime(schduleTime);
         }
         jobConfigDao.insert(jobConfigEbo);
@@ -67,12 +69,22 @@ public class JobService {
         jobConfigDao.delete(id);
     }
 
+    public boolean fieldsCompare(List<String> originTableFields, List<String> toTableFields) {
+        if (originTableFields.size() == toTableFields.size()) {
+            if (originTableFields.containsAll(toTableFields) && toTableFields.containsAll(originTableFields)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
     public List<JobConfigEbo> getAllJobConfig() {
         return jobConfigDao.findAll();
     }
 
-    public List<String> getTableFields(String sql,int dbConfigId) throws Exception {
-        DbConfigEbo dbConfigEbo= dbConfigDao.getDbConfigById(dbConfigId);
+    public List<String> getTableFields(String sql, int dbConfigId) throws Exception {
+        DbConfigEbo dbConfigEbo = dbConfigDao.getDbConfigById(dbConfigId);
 
         CharStream input = CharStreams.fromString(sql);
         HiveSqlLexer lexer = new HiveSqlLexer(input);
@@ -87,25 +99,33 @@ public class JobService {
             if (metaData.get(0).equals("*")) {
                 log.info("===getTableFields one field===*");
                 metaData.clear();
-                switch(dbConfigEbo.getType()){
+                switch (dbConfigEbo.getType()) {
                     case Constant.hiveType:
-                        metaData.addAll(getTableField(sql,dbConfigEbo,Constant.hiveConnectDriver));
+                        metaData.addAll(getTableField(sql, dbConfigEbo, Constant.hiveConnectDriver));
                         break; //可选
                     case Constant.mysqlType:
-                        metaData.addAll(getTableField(sql,dbConfigEbo,Constant.mysqlConnectDriver));
+                        metaData.addAll(getTableField(sql, dbConfigEbo, Constant.mysqlConnectDriver));
                         break; //可选
                 }
             } else {
-                log.info("===getTableFields field:{}===",metaData.toString());
+                log.info("===getTableFields field:{}===", metaData.toString());
             }
         } else if (metaData.size() > 1) {
-            log.info("===getTableFields field:{}===",metaData.toString());
+            Set<String> set = new HashSet<>();
+            int length = metaData.size();
+            for (int i = 0; i < length; i++) {
+                set.add(metaData.get(i));
+            }
+            if (set.size() < length) {
+                throw new Exception("sql有误，包含重复字段");
+            }
+            log.info("===getTableFields field:{}===", metaData.toString());
         }
         return metaData;
     }
 
-    private List<String> getTableField(String sql,DbConfigEbo dbConfigEbo,String connectDriver) throws Exception {
-        List<String> columnNames=new ArrayList<>();
+    private List<String> getTableField(String sql, DbConfigEbo dbConfigEbo, String connectDriver) throws Exception {
+        List<String> columnNames = new ArrayList<>();
         try {
             Class.forName(connectDriver);
         } catch (ClassNotFoundException e) {
@@ -114,7 +134,7 @@ public class JobService {
         Connection conn = null;
         try {
             String url = dbConfigEbo.getUrl();
-            conn = DriverManager.getConnection(url,dbConfigEbo.getUser(),dbConfigEbo.getPwd());
+            conn = DriverManager.getConnection(url, dbConfigEbo.getUser(), dbConfigEbo.getPwd());
             Statement stat = conn.createStatement();
             ResultSet re = stat.executeQuery(sql);
             ResultSetMetaData rsmd = re.getMetaData();
@@ -129,7 +149,6 @@ public class JobService {
         }
         return columnNames;
     }
-
 
 
 }

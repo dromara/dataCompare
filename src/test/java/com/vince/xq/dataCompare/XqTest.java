@@ -6,6 +6,21 @@ import org.junit.Test;
 import java.sql.*;
 
 public class XqTest {
+
+    @Test
+    public void testStr(){
+        String countCompareSql = "SELECT  base.uv,\n" +
+                "         verify.uv AS verify_uv,\n" +
+                "         base.uv - verify.uv AS diff_uv \n" +
+                "from\n" +
+                "    (SELECT 'total_num' AS name,  count(distinct [origin_primary_key]) AS uv\n" +
+                "    FROM [origin_table] ) base left outer join\n" +
+                "    (SELECT 'total_num' AS name, count(distinct [to_primary_key]) AS uv\n" +
+                "    FROM [to_table] ) verify\n" +
+                "ON base.name = verify.name\n" +
+                "\n";
+        System.out.println(countCompareSql);
+    }
     @Test
     public void testDb() {
         // TODO Auto-generated method stub
