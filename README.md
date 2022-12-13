@@ -32,5 +32,3 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 
 
 #### 技术交流
-
-![输入图片说明](image_weixin.png)
