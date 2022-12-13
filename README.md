@@ -42,7 +42,7 @@ job配置
 ![image](https://user-images.githubusercontent.com/28300167/207256145-7ce5eaa2-7030-4c2c-91d9-3e566162e91e.png)
 
 对比结果展示
-![image](https://user-images.githubusercontent.com/28300167/207259687-34bdaad2-f612-4f11-b1d6-e48c6edbfeea.png)
+![image](https://user-images.githubusercontent.com/28300167/207259977-fd2258a8-fce1-4a3b-85a3-2b6213e3b0a7.png)
 
 
 #### 技术交流
