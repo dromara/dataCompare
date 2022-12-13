@@ -61,7 +61,7 @@ mysql 5.7.36
 
 (4)运行 java -jar -Dspring.config.location=application.yml dataCompare.jar (application.yml和jar在同一目录下)
 
-(5)访问 http://127.0.0.1/ 即可
+(5)访问 http://127.0.0.1/ 即可 (账号:admin 密码:admin123)
 
 
 #### 技术交流
