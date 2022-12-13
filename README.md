@@ -19,7 +19,7 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 数据存储引擎、计算引擎：Hive、Spark 等
 
 
-#### 系统架构图
+#### 系统流程图
 
 ![输入图片说明](image1.png)
 ![输入图片说明](image2.png)
@@ -33,6 +33,7 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 
 #### 系统功能演示
 系统主页
+![image](https://user-images.githubusercontent.com/28300167/207257662-273fc531-c21e-437a-9d20-f15a533b58bd.png)
 
 数据库配置
 ![image](https://user-images.githubusercontent.com/28300167/207256310-8c6d0be4-90c2-4a71-a49b-c54d3537a7bf.png)
@@ -40,6 +41,8 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 job配置
 ![image](https://user-images.githubusercontent.com/28300167/207256145-7ce5eaa2-7030-4c2c-91d9-3e566162e91e.png)
 
+对比结果展示
+![image](https://user-images.githubusercontent.com/28300167/207259687-34bdaad2-f612-4f11-b1d6-e48c6edbfeea.png)
 
 
 #### 技术交流
