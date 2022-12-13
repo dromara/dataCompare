@@ -278,7 +278,7 @@
                     <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
                 <version>${antlr4.version}</version>
@@ -298,7 +298,7 @@
                     <visitor>true</visitor>
                     <treatWarningsAsErrors>true</treatWarningsAsErrors>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <!-- YUI Compressor (CSS/JS压缩) 
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
