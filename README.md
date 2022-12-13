@@ -44,16 +44,23 @@ job配置
 对比结果展示
 ![image](https://user-images.githubusercontent.com/28300167/207259977-fd2258a8-fce1-4a3b-85a3-2b6213e3b0a7.png)
 
-#### 运行
+#### 系统运行
 系统运行环境要求：
+
 java jdk8
+
 mysql 5.7.36
 
 运行配置
+
 (1)将sql目录中的sql文件进行运行在数据库，创建库和表
+
 (2)下载发布好的jar(https://github.com/zhugezifang/dataCompare/releases)或者自己构建jar
+
 (3)修改数据库配置信息 application.yml
+
 (4)运行 java -jar -Dspring.config.location=application.yml dataCompare.jar (application.yml和jar在同一目录下)
+
 (5)访问 http://127.0.0.1/ 即可
 
 
