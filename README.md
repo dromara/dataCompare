@@ -63,7 +63,7 @@ mysql 5.7.36
 
 (1)将sql目录中的sql文件进行运行在数据库，创建库和表
 
-(2)下载发布好的jar(https://github.com/zhugezifang/dataCompare/releases)或者自己构建jar
+(2)下载发布好的jar(https://github.com/zhugezifang/dataCompare/releases) 或者自己构建jar
 
 (3)修改数据库配置信息 application.yml
 
