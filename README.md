@@ -1,5 +1,16 @@
 # dataCompare
 
+![](https://gitee.com/ZhuGeZiFang/data-compare/badge/star.svg)
+![](https://gitee.com/ZhuGeZiFang/data-compare/badge/fork.svg?theme=gvp)
+![](https://img.shields.io/github/stars/zhugezifang/dataCompare.svg?logo=GitHub)
+![](https://img.shields.io/github/forks/zhugezifang/dataCompare.svg?logo=GitHub)
+![](https://img.shields.io/github/watchers/zhugezifang/dataCompare.svg?logo=GitHub)
+![](https://img.shields.io/github/license/zhugezifang/dataCompare.svg)
+![](https://img.shields.io/github/v/release/zhugezifang/dataCompare?label=latest&style=flat-square)
+
+[![EN doc](https://img.shields.io/badge/document-English-blue.svg)](README.md)
+[![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](README_zh_CN.md)
+
 
 #### Introduction
 dataCompare is a database comparison tool: support Hive table data comparison, MySQL data comparison, realize automatic configuration for data comparison, avoid frequent SQL writing for processing, and consider supporting Doris, CK and so on
