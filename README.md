@@ -1,22 +1,23 @@
 # dataCompare
 
 
-#### 介绍
-dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql 数据比对，实现自动化配置进行数据比对，避免频繁写sql 进行处理，后续考虑支持doris、ck等等
+#### Introduction
+dataCompare is a database comparison tool: support Hive table data comparison, MySQL data comparison, realize automatic configuration for data comparison, avoid frequent SQL writing for processing, and consider supporting Doris, CK and so on
 
-#### 软件架构
+
+#### Software Architecture
 
 ![输入图片说明](image77.png)
 
-技术栈:
+Technology stack:
 
-后端：Spring boot + Mybatis
+End：Spring boot + Mybatis
 
-数据库:MySQL
+DataBase:MySQL
 
-解析引擎：Antrl
+Parsing Engine：Antrl
 
-数据存储引擎、计算引擎：Hive、Spark 等
+Big Data：Hive、Spark
 
 
 #### 系统流程图
@@ -31,56 +32,55 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 ![img.png](img.png)
 
 
-#### 系统功能演示
-系统主页
+#### Demonstration of system functionality
+Home
 ![image](https://user-images.githubusercontent.com/28300167/207257662-273fc531-c21e-437a-9d20-f15a533b58bd.png)
 
-数据库配置
+DbConfig
 
-mysql配置
+mysql config
 
 ![image](https://user-images.githubusercontent.com/28300167/207256310-8c6d0be4-90c2-4a71-a49b-c54d3537a7bf.png)
 
-hive配置
+hive config
 
 ![image](https://user-images.githubusercontent.com/28300167/207497891-8dc317f6-06f3-4d53-96d5-400586e0a488.png)
 
 
-job配置
+job config
 ![image](https://user-images.githubusercontent.com/28300167/207256145-7ce5eaa2-7030-4c2c-91d9-3e566162e91e.png)
 
-对比结果展示
+Comparison results are displayed
 ![image](https://user-images.githubusercontent.com/28300167/207259977-fd2258a8-fce1-4a3b-85a3-2b6213e3b0a7.png)
 
-#### 系统运行
-系统运行环境要求：
+#### The system running environment
 
 java jdk8
 
 mysql 5.7.36
 
-运行配置
+Runing config
 
-(1)将sql目录中的sql文件进行运行在数据库，创建库和表
+(1)Run the SQL files in the SQL directory in the database, create database and tables
 
-(2)下载发布好的jar(https://github.com/zhugezifang/dataCompare/releases) 或者自己构建jar
+(2)download the release jar(https://github.com/zhugezifang/dataCompare/releases) or build jar using the source code of the project 
 
-(3)修改数据库配置信息 application.yml
+(3)edit database config information of application.yml
 
-(4)运行 java -jar -Dspring.config.location=application.yml dataCompare.jar (application.yml和jar在同一目录下)
+(4)run java -jar -Dspring.config.location=application.yml dataCompare.jar (application.yml and jar must in the same directory)
 
-(5)访问 http://127.0.0.1/ 即可 (账号:admin 密码:admin123)
+(5)visit http://127.0.0.1/ (UserName:admin PassWord:admin123)
 
-环境安装配置
+Environment installation configuration
 
-(1)如果要实现Hive数据对比配置需要先安装Hive 环境(安装文档参考docker快速安装Hive环境：https://blog.csdn.net/ifenggege/article/details/107860477)
+(1)If you want to implement Hive data comparison configuration, you need to install the Hive environment first(The installation documentation refers to the docker quick installation of the Hive environment：https://blog.csdn.net/ifenggege/article/details/107860477)
 
-(2)安装好之后新建数据源连接时选择Hive，地址为：jdbc:hive2://ip:10000 
+(2)After installation, when creating a new data source connection, select Hive at the address jdbc:hive2://ip:10000 
 
 
-#### 技术交流
+#### Technological Communication
 ![image](https://user-images.githubusercontent.com/28300167/207255900-152d6834-9602-4ada-91ca-ad9906d89bf8.png)
 
 
-#### 致谢
-感谢ruoyi 提供前端服务
+#### Thanks
+Thanks ruoyi Provides front-end services
