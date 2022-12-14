@@ -71,6 +71,12 @@ mysql 5.7.36
 
 (5)访问 http://127.0.0.1/ 即可 (账号:admin 密码:admin123)
 
+环境安装配置
+
+(1)如果要实现Hive数据对比配置需要先安装Hive 环境(安装文档参考docker快速安装Hive环境：https://blog.csdn.net/ifenggege/article/details/107860477)
+
+(2)安装好之后新建数据源连接时选择Hive，地址为：jdbc:hive2://ip:10000 
+
 
 #### 技术交流
 ![image](https://user-images.githubusercontent.com/28300167/207255900-152d6834-9602-4ada-91ca-ad9906d89bf8.png)
