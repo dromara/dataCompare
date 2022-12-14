@@ -1,5 +1,14 @@
 # dataCompare
+![](https://gitee.com/ZhuGeZiFang/data-compare/badge/star.svg)
+![](https://gitee.com/ZhuGeZiFang/data-compare/badge/fork.svg?theme=gvp)
+![](https://img.shields.io/github/stars/zhugezifang/dataCompare.svg?logo=GitHub)
+![](https://img.shields.io/github/forks/zhugezifang/dataCompare.svg?logo=GitHub)
+![](https://img.shields.io/github/watchers/zhugezifang/dataCompare.svg?logo=GitHub)
+![](https://img.shields.io/github/license/zhugezifang/dataCompare.svg)
+![](https://img.shields.io/github/v/release/zhugezifang/dataCompare?label=latest&style=flat-square)
 
+[![EN doc](https://img.shields.io/badge/document-English-blue.svg)](README.md)
+[![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](README-CN.md)
 
 #### 介绍
 dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql 数据比对，实现自动化配置进行数据比对，避免频繁写sql 进行处理，后续考虑支持doris、ck等等
