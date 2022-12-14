@@ -20,7 +20,7 @@ Parsing Engine：Antrl
 Big Data：Hive、Spark
 
 
-#### 系统流程图
+#### System flowchart
 
 ![输入图片说明](image1.png)
 ![输入图片说明](image2.png)
