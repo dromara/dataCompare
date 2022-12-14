@@ -4,10 +4,13 @@
 #### Introduction
 dataCompare is a database comparison tool: support Hive table data comparison, MySQL data comparison, realize automatic configuration for data comparison, avoid frequent SQL writing for processing, and consider supporting Doris, CK and so on
 
+![image](https://user-images.githubusercontent.com/28300167/207563534-e4df0c95-846b-4cf3-be68-37b91bd05f0b.png)
+
 
 #### Software Architecture
 
-![输入图片说明](image77.png)
+![image](https://user-images.githubusercontent.com/28300167/207563635-373a656f-6794-4927-a094-6605f868b708.png)
+
 
 Technology stack:
 
@@ -63,7 +66,7 @@ Runing config
 
 (1)Run the SQL files in the SQL directory in the database, create database and tables
 
-(2)download the release jar(https://github.com/zhugezifang/dataCompare/releases) or build jar using the source code of the project 
+(2)download the release jar(https://github.com/zhugezifang/dataCompare/releases) or build jar using the source code of the project
 
 (3)edit database config information of application.yml
 
@@ -75,7 +78,7 @@ Environment installation configuration
 
 (1)If you want to implement Hive data comparison configuration, you need to install the Hive environment first(The installation documentation refers to the docker quick installation of the Hive environment：https://blog.csdn.net/ifenggege/article/details/107860477)
 
-(2)After installation, when creating a new data source connection, select Hive at the address jdbc:hive2://ip:10000 
+(2)After installation, when creating a new data source connection, select Hive at the address jdbc:hive2://ip:10000
 
 
 #### Technological Communication
