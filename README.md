@@ -36,7 +36,10 @@ dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql �
 ![image](https://user-images.githubusercontent.com/28300167/207257662-273fc531-c21e-437a-9d20-f15a533b58bd.png)
 
 数据库配置
+mysql配置
 ![image](https://user-images.githubusercontent.com/28300167/207256310-8c6d0be4-90c2-4a71-a49b-c54d3537a7bf.png)
+hive配置
+![image](https://user-images.githubusercontent.com/28300167/207497717-1c0fccbb-5e2e-491e-9965-83512d5b857f.png)
 
 job配置
 ![image](https://user-images.githubusercontent.com/28300167/207256145-7ce5eaa2-7030-4c2c-91d9-3e566162e91e.png)
