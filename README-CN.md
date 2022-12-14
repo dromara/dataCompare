@@ -4,6 +4,8 @@
 #### 介绍
 dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql 数据比对，实现自动化配置进行数据比对，避免频繁写sql 进行处理，后续考虑支持doris、ck等等
 
+![image](https://user-images.githubusercontent.com/28300167/207563954-6e3dba02-84de-4881-9a23-371b88ed5b1e.png)
+
 #### 软件架构
 
 ![输入图片说明](image77.png)
