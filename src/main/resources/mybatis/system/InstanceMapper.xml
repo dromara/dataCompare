@@ -20,8 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="consistencySql"    column="consistency_sql"   />
 		<result property="dt"    column="dt"   />
 		<result property="createTime"    column="create_time"   />
+		<result property="originTableName"      column="origin_table_name"/>
+		<result property="toTableName"      column="to_table_name"/>
 	</resultMap>
-	
+
 	<sql id="selecInstanceVo">
         select id,
 			   job_config_id,
@@ -40,16 +42,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			   create_time
 		from job_instance
     </sql>
-	
+
 	<select id="selectInstanceList" parameterType="Instance" resultMap="InstanceResult">
-	    <include refid="selecInstanceVo"/>
+		select a.id,
+		a.job_config_id,
+		a.origin_table_pv,
+		a.origin_table_uv,
+		a.to_table_pv,
+		a.to_table_uv,
+		a.pv_diff,
+		a.uv_diff,
+		a.magnitude_sql,
+		a.origin_table_count,
+		a.to_table_count,
+		a.count_diff,
+		a.consistency_sql,
+		a.dt,
+		a.create_time,
+		b.origin_table_name,
+		b.to_table_name
+		from job_instance a join job_config b on a.job_config_id=b.id
 		<where>
 			<if test="jobconfigId != null and jobconfigId != ''">
 				AND job_config_id like concat('%', #{jobconfigId}, '%')
 			</if>
 		</where>
 	</select>
-	
+
 	<select id="selectInstanceAll" resultMap="InstanceResult">
 		<include refid="selecInstanceVo"/>
 	</select>
@@ -63,9 +82,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		delete from job_instance where id in
  		<foreach collection="array" item="id" open="(" separator="," close=")">
  			#{id}
-        </foreach> 
+        </foreach>
  	</delete>
- 	
+
  	<insert id="insertInstance" parameterType="Instance" useGeneratedKeys="true" keyProperty="id">
  		insert into job_instance(
  			<if test="jobconfigId != null and jobconfigId != ''">job_config_id,</if>

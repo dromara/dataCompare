@@ -62,6 +62,10 @@ public class Instance implements Serializable
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
+    private String originTableName;
+
+    private String toTableName;
+
     public Long getId() {
         return id;
     }
@@ -180,5 +184,21 @@ public class Instance implements Serializable
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getOriginTableName() {
+        return originTableName;
+    }
+
+    public void setOriginTableName(String originTableName) {
+        this.originTableName = originTableName;
+    }
+
+    public String getToTableName() {
+        return toTableName;
+    }
+
+    public void setToTableName(String toTableName) {
+        this.toTableName = toTableName;
     }
 }
