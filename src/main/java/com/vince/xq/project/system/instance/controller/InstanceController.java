@@ -87,7 +87,6 @@ public class InstanceController extends BaseController {
         boolean consistencyFlag = instance.getCountDiff().equals(instance.getOriginTableCount()) && instance.getCountDiff().equals(instance.getToTableCount()) ? true : false;
         mmap.put("Instance", instance);
         mmap.put("numFlag", numFlag);
-        System.out.println("consistencyFlag:" + consistencyFlag);
         mmap.put("consistencyFlag", consistencyFlag);
         return prefix + "/detail";
     }
