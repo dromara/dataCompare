@@ -67,6 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				AND job_config_id like concat('%', #{jobconfigId}, '%')
 			</if>
 		</where>
+		order by a.create_time desc
 	</select>
 
 	<select id="selectInstanceAll" resultMap="InstanceResult">

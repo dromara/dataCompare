@@ -83,10 +83,11 @@ public class InstanceController extends BaseController {
     @GetMapping("/detail/{id}")
     public String edit(@PathVariable("id") Long id, ModelMap mmap) {
         Instance instance = InstanceService.selectInstanceById(id);
-        String numFlag = instance.getPvDiff().equals("0") && instance.getUvDiff().equals("0") ? "ture" : "false";
-        String consistencyFlag = instance.getCountDiff().equals(instance.getOriginTableCount()) && instance.getCountDiff().equals(instance.getToTableCount()) ? "ture" : "false";
+        boolean numFlag = instance.getPvDiff().equals("0") && instance.getUvDiff().equals("0") ? true : false;
+        boolean consistencyFlag = instance.getCountDiff().equals(instance.getOriginTableCount()) && instance.getCountDiff().equals(instance.getToTableCount()) ? true : false;
         mmap.put("Instance", instance);
         mmap.put("numFlag", numFlag);
+        System.out.println("consistencyFlag:" + consistencyFlag);
         mmap.put("consistencyFlag", consistencyFlag);
         return prefix + "/detail";
     }

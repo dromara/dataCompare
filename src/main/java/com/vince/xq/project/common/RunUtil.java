@@ -83,7 +83,53 @@ public class RunUtil {
             "\n" +
             ") t GROUP BY compareKey";
 
-    public static final String COLUMN = "if({column} is null, '-', {column})";
+    private static final String CHECK_SQL = "select base.originTablePrimary as base_originTablePrimary,\n" +
+            "\t   fields_list_check\n" +
+            "  from (\n" +
+            "        select \n" +
+            "               originTablePrimary,\n" +
+            "               originTableFields\n" +
+            "          from originTableName\n" +
+            "          originTableFilter\n" +
+            "       )base\n" +
+            "  left join (\n" +
+            "        select originTablePrimary,\n" +
+            "               originTableFields\n" +
+            "          from toTableName\n" +
+            "          toTableFilter\n" +
+            "       )verify\n" +
+            "   on if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
+            " where \n" +
+            "\tfields_list_check_filter\n"
+            +"union\n"
+            +"select base.originTablePrimary as base_originTablePrimary,\n" +
+            "\t   fields_list_check\n" +
+            "  from (\n" +
+            "        select \n" +
+            "               originTablePrimary,\n" +
+            "               originTableFields\n" +
+            "          from originTableName\n" +
+            "          originTableFilter\n" +
+            "       )base\n" +
+            "  right join (\n" +
+            "        select originTablePrimary,\n" +
+            "               originTableFields\n" +
+            "          from toTableName\n" +
+            "          toTableFilter\n" +
+            "       )verify\n" +
+            "   on if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
+            " where \n" +
+            "\tfields_list_check_filter\n";
+
+    public static final String COLUMN = "if(column is null, '-', column)";
+
+    public static final String fields_list_check = "base.column as base_column,\n" +
+            "       verify.column as verify_column,\n" +
+            "       case when if(base.column is null, '-',base.column) = if(verify.column is null, '-', verify.column) then '1'\n" +
+            "            else '0'\n" +
+            "             end as column_is_pass";
+
+    public static final String fields_list_check_filter = "if(base.column is null, '-', base.column) <> if(verify.column is null, '-', verify.column)";
 
     public static Instance run(Dbconfig dbconfig, Jobconfig jobconfig) throws Exception {
 
@@ -92,18 +138,20 @@ public class RunUtil {
         String compareNumSql = String.format(PV_UV_SQL, jobconfig.getOriginTablePrimary(), jobconfig.getOriginTableName(), Optional.ofNullable(jobconfig.getOriginTableFilter()).orElse("")
                 , jobconfig.getToTablePrimary(), jobconfig.getToTableName(), Optional.ofNullable(jobconfig.getToTableFilter()).orElse(""));
 
-        log.info("====compareNumSql:{}====", compareNumSql);
+        log.info("====compareNumSql====");
+        log.info(compareNumSql);
+        log.info("====compareNumSql====");
 
         String[] fileds = jobconfig.getOriginTableFields().split(",");
         List<String> originColumns = new ArrayList<>();
-        originColumns.add(COLUMN.replace("{column}", jobconfig.getOriginTablePrimary()));
+        originColumns.add(COLUMN.replace("column", jobconfig.getOriginTablePrimary()));
         for (int i = 0; i < fileds.length; i++) {
-            originColumns.add(COLUMN.replace("{column}", fileds[i]));
+            originColumns.add(COLUMN.replace("column", fileds[i]));
         }
         List<String> toColumns = new ArrayList<>();
-        toColumns.add(COLUMN.replace("{column}", jobconfig.getToTablePrimary()));
+        toColumns.add(COLUMN.replace("column", jobconfig.getToTablePrimary()));
         for (int i = 0; i < fileds.length; i++) {
-            toColumns.add(COLUMN.replace("{column}", fileds[i]));
+            toColumns.add(COLUMN.replace("column", fileds[i]));
         }
         String consistencyNumSql = String.format(CONSISTENCY_SQL,
                 String.join(",", originColumns),
@@ -122,8 +170,28 @@ public class RunUtil {
                 jobconfig.getToTableName(),
                 Optional.ofNullable(jobconfig.getToTableFilter()).orElse(""));
 
-        log.info("====consistencyNumSql:{}====", consistencyNumSql);
+        log.info("====consistencyNumSql====");
+        log.info(consistencyNumSql);
+        log.info("====consistencyNumSql====");
 
+        List<String> fields_list = new ArrayList<>();
+        List<String> fields_list_filter = new ArrayList<>();
+        for (int i = 0; i < fileds.length; i++) {
+            fields_list.add(fields_list_check.replaceAll("column", fileds[i]));
+            fields_list_filter.add(fields_list_check_filter.replaceAll("column", fileds[i]));
+        }
+        String check_sql = CHECK_SQL.replaceAll("originTablePrimary", jobconfig.getOriginTablePrimary())
+                .replaceAll("originTableFields", jobconfig.getOriginTableFields())
+                .replaceAll("originTableName", jobconfig.getOriginTableName())
+                .replaceAll("toTableName", jobconfig.getToTableName())
+                .replaceAll("originTableFilter", Optional.ofNullable(jobconfig.getOriginTableFilter()).orElse(""))
+                .replaceAll("toTableFilter", Optional.ofNullable(jobconfig.getToTableFilter()).orElse(""))
+                .replaceAll("fields_list_check_filter", String.join(" or ", fields_list_filter))
+                .replaceAll("fields_list_check", String.join(",", fields_list));
+
+        log.info("====check_sql====");
+        log.info(check_sql);
+        log.info("====check_sql====");
         Instance instance = runNum(dbconfig, dbTypeEnum.getConnectDriver(), compareNumSql, consistencyNumSql);
         instance.setMagnitudeSql(compareNumSql);
         instance.setConsistencySql(consistencyNumSql);
