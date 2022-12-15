@@ -82,10 +82,22 @@
                 },
                 {
                     field: 'countDiff',
-                    title: '校验通过',
+                    title: '量级校验通过',
                     formatter: function (value, row, index) {
                         console.log(row.pvDiff);
-                        if (row.pvDiff == '0' && row.uvDiff == '0' && row.countDiff == row.originTableCount && row.countDiff == row.toTableCount) {
+                        if (row.pvDiff == '0' && row.uvDiff == '0') {
+                            return "是";
+                        } else {
+                            return "否";
+                        }
+                    }
+                },
+                {
+                    field: 'countDiff',
+                    title: '一致性校验通过',
+                    formatter: function (value, row, index) {
+                        console.log(row.pvDiff);
+                        if (row.countDiff == row.originTableCount && row.countDiff == row.toTableCount) {
                             return "是";
                         } else {
                             return "否";
