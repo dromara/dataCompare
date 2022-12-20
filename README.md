@@ -17,6 +17,13 @@ dataCompare is a database comparison platform: support Hive table data compariso
 
 ![image](https://user-images.githubusercontent.com/28300167/207563534-e4df0c95-846b-4cf3-be68-37b91bd05f0b.png)
 
+#### Features
+(1)Low-code configuration can realize the comparison of data tables without cumbersome sql development
+
+(2)The following functions are currently supported: magnitude comparison, consistency comparison, difference case discovery
+
+(3)Subsequent plan support: unfamiliar table pointer detection, including: enumeration value detection, range value detection, primary key id hash detection
+
 
 #### Software Architecture
 
