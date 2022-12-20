@@ -122,12 +122,11 @@ public class DbconfigServiceImpl implements IDbconfigService {
 
     @Override
     public void testConnection(Dbconfig dbconfig) throws Exception {
-        if (dbconfig.getType().equals(DbTypeEnum.MySQL.getType())) {
-            testConnectionDriver(dbconfig, DbTypeEnum.MySQL.getConnectDriver());
-        } else if (dbconfig.getType().equals(DbTypeEnum.Hive.getType())) {
-            testConnectionDriver(dbconfig, DbTypeEnum.Hive.getConnectDriver());
-        } else {
+        DbTypeEnum dbTypeEnum = DbTypeEnum.findEnumByType(dbconfig.getType());
+        if (dbTypeEnum == null) {
             throw new Exception("不识别的类型");
+        } else {
+            testConnectionDriver(dbconfig, dbTypeEnum.getConnectDriver());
         }
     }
 

@@ -821,7 +821,7 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '1', '#', 'menuItem', 'M', '0', '1', '', 'fa fa-gear', 'admin', '2022-11-29 10:10:28', 'admin', '2022-12-12 09:52:29', '系统管理目录');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '1', '#', 'menuItem', 'M', '1', '1', '', 'fa fa-gear', 'admin', '2022-11-29 10:10:28', 'admin', '2022-12-12 09:52:29', '系统管理目录');
 INSERT INTO `sys_menu` VALUES ('2', '系统监控', '0', '2', '#', 'menuItem', 'M', '1', '1', '', 'fa fa-video-camera', 'admin', '2022-11-29 10:10:29', 'admin', '2022-12-12 09:24:32', '系统监控目录');
 INSERT INTO `sys_menu` VALUES ('3', '系统工具', '0', '3', '#', 'menuItem', 'M', '1', '1', '', 'fa fa-bars', 'admin', '2022-11-29 10:10:29', 'admin', '2022-12-12 09:24:39', '系统工具目录');
 INSERT INTO `sys_menu` VALUES ('4', '若依官网', '0', '4', 'http://ruoyi.vip', 'menuBlank', 'C', '1', '1', '', 'fa fa-location-arrow', 'admin', '2022-11-29 10:10:29', 'admin', '2022-12-12 09:24:48', '若依官网地址');

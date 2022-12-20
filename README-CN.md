@@ -11,14 +11,14 @@
 [![CN doc](https://img.shields.io/badge/文档-中文版-blue.svg)](README-CN.md)
 
 #### 介绍
-dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql 数据比对，实现自动化配置进行数据比对，避免频繁写sql 进行处理，后续考虑支持doris、ck等等
+dataCompare 是一个数据库比对工具：支持hive表数据比对，mysql、Doris 数据比对，实现自动化配置进行数据比对，避免频繁写sql 进行处理，后续考虑支持ck等等
 
 ![image](https://user-images.githubusercontent.com/28300167/207563954-6e3dba02-84de-4881-9a23-371b88ed5b1e.png)
 
 #### 功能介绍
 (1)低代码配置，即可实现数据表的对比，不需要繁琐的sql开发
 
-(2)目前已经支持如下功能： 量级对比、一致性对比、差异case 发现，已经支持MySQL、Hive
+(2)目前已经支持如下功能： 量级对比、一致性对比、差异case 发现，已经支持MySQL、Hive、Doris
 
 (3)后续计划支持：陌生表指针探测，包括：枚举值探测、范围值探测、主键id hash 探测
 

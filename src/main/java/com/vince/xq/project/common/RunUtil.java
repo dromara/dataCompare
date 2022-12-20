@@ -84,38 +84,42 @@ public class RunUtil {
     private static final String CHECK_SQL = "select base.originTablePrimary as base_originTablePrimary,\n" +
             "\t   fields_list_check\n" +
             "  from (\n" +
-            "        select \n" +
+            "        select 'num' as compareKey,\n" +
             "               originTablePrimary,\n" +
             "               originTableFields\n" +
             "          from originTableName\n" +
             "          originTableFilter\n" +
             "       )base\n" +
             "  left join (\n" +
-            "        select originTablePrimary,\n" +
+            "        select 'num' as compareKey,\n" +
+            "originTablePrimary,\n" +
             "               originTableFields\n" +
             "          from toTableName\n" +
             "          toTableFilter\n" +
             "       )verify\n" +
-            "   on if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
+            "on base.compareKey=verify.compareKey\n" +
+            "   and if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
             " where \n" +
             "\tfields_list_check_filter\n"
             + "union\n"
             + "select base.originTablePrimary as base_originTablePrimary,\n" +
             "\t   fields_list_check\n" +
             "  from (\n" +
-            "        select \n" +
+            "        select 'num' as compareKey,\n" +
             "               originTablePrimary,\n" +
             "               originTableFields\n" +
             "          from originTableName\n" +
             "          originTableFilter\n" +
             "       )base\n" +
             "  right join (\n" +
-            "        select originTablePrimary,\n" +
+            "        select 'num' as compareKey,\n" +
+            "originTablePrimary,\n" +
             "               originTableFields\n" +
             "          from toTableName\n" +
             "          toTableFilter\n" +
             "       )verify\n" +
-            "   on if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
+            "on base.compareKey=verify.compareKey\n" +
+            "   and if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
             " where \n" +
             "\tfields_list_check_filter\n";
 
@@ -214,7 +218,7 @@ public class RunUtil {
             int columnCount = metaData.getColumnCount(); //获取列的数量
             List<LinkedHashMap<String, String>> list = new ArrayList<>();
             while (re.next()) {
-                LinkedHashMap<String,String> hashMap = new LinkedHashMap();
+                LinkedHashMap<String, String> hashMap = new LinkedHashMap();
                 for (int i = 0; i < columnCount; i++) { //循环列
                     String columnName = metaData.getColumnName(i + 1); //通过序号获取列名,起始值为1
                     String columnValue = re.getString(columnName);  //通过列名获取值.如果列值为空,columnValue为null,不是字符型

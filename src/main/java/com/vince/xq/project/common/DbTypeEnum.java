@@ -2,7 +2,8 @@ package com.vince.xq.project.common;
 
 public enum DbTypeEnum {
     MySQL(0, "MySQL", "com.mysql.cj.jdbc.Driver"),
-    Hive(1, "Hive", "org.apache.hive.jdbc.HiveDriver");
+    Hive(1, "Hive", "org.apache.hive.jdbc.HiveDriver"),
+    Doris(2, "Doris", "com.mysql.cj.jdbc.Driver");
 
     private int i;
     private String type;
