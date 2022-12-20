@@ -65,7 +65,12 @@ job config
 ![image](https://user-images.githubusercontent.com/28300167/207256145-7ce5eaa2-7030-4c2c-91d9-3e566162e91e.png)
 
 Comparison results are displayed
+![image](https://user-images.githubusercontent.com/28300167/208607718-0767ff93-223a-408d-a586-7d509f278197.png)
+
 ![image](https://user-images.githubusercontent.com/28300167/207259977-fd2258a8-fce1-4a3b-85a3-2b6213e3b0a7.png)
+
+![3fd83de9c582347f7f88cc82f438db4](https://user-images.githubusercontent.com/28300167/208607767-94cffce0-30f3-45ec-a280-978964e153bb.png)
+
 
 #### The system running environment
 
