@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 岗位信息 服务层处理
@@ -78,5 +80,14 @@ public class InstanceServiceImpl implements IInstanceService {
             instance.setJobconfigId(id);
             instanceMapper.insertInstance(instance);
         }
+    }
+
+    @Override
+    public List<LinkedHashMap<String, String>> getDiffDetail(Long id) throws Exception {
+        Instance instance = instanceMapper.selectInstanceById(id);
+        Jobconfig jobconfig = jobconfigMapper.selectJobconfigById(instance.getJobconfigId());
+        Dbconfig dbconfig = dbconfigMapper.selectDbconfigById(jobconfig.getDbConfigId());
+        List<LinkedHashMap<String, String>> list = RunUtil.runDiffDetail(dbconfig, jobconfig);
+        return list;
     }
 }

@@ -116,7 +116,7 @@
         <div class="form-group">
             <div class="col-sm-offset-5">
 
-                <button type="button" class="btn btn-w-m btn-primary"
+                <button type="button" class="btn btn-w-m btn-primary" onclick="see()"
                         th:style="'display:' + @{(${consistencyFlag} == true ? 'none' : 'inline-block')} + ''">
                     查看差异
                 </button>
@@ -128,7 +128,10 @@
 </div>
 <th:block th:include="include :: footer"/>
 <script type="text/javascript">
-
+    var prefix = ctx + "system/jobInstance";
+    function see() {
+        $.modal.open("差异case", prefix + "/diffDetail/" + $("#id").val());
+    }
 </script>
 </body>
 </html>

@@ -8,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class RunUtil {
     private static final Logger log = LoggerFactory.getLogger(RunUtil.class);
@@ -101,8 +99,8 @@ public class RunUtil {
             "   on if(base.originTablePrimary is null, '-', base.originTablePrimary) = if(verify.originTablePrimary is null, '-', verify.originTablePrimary)\n" +
             " where \n" +
             "\tfields_list_check_filter\n"
-            +"union\n"
-            +"select base.originTablePrimary as base_originTablePrimary,\n" +
+            + "union\n"
+            + "select base.originTablePrimary as base_originTablePrimary,\n" +
             "\t   fields_list_check\n" +
             "  from (\n" +
             "        select \n" +
@@ -125,8 +123,8 @@ public class RunUtil {
 
     public static final String fields_list_check = "base.column as base_column,\n" +
             "       verify.column as verify_column,\n" +
-            "       case when if(base.column is null, '-',base.column) = if(verify.column is null, '-', verify.column) then '1'\n" +
-            "            else '0'\n" +
+            "       case when if(base.column is null, '-',base.column) = if(verify.column is null, '-', verify.column) then '一致'\n" +
+            "            else '不一致'\n" +
             "             end as column_is_pass";
 
     public static final String fields_list_check_filter = "if(base.column is null, '-', base.column) <> if(verify.column is null, '-', verify.column)";
@@ -174,6 +172,14 @@ public class RunUtil {
         log.info(consistencyNumSql);
         log.info("====consistencyNumSql====");
 
+        Instance instance = runNum(dbconfig, dbTypeEnum.getConnectDriver(), compareNumSql, consistencyNumSql);
+        instance.setMagnitudeSql(compareNumSql);
+        instance.setConsistencySql(consistencyNumSql);
+        return instance;
+    }
+
+    public static List<LinkedHashMap<String, String>> runDiffDetail(Dbconfig dbconfig, Jobconfig jobconfig) throws Exception {
+        String[] fileds = jobconfig.getOriginTableFields().split(",");
         List<String> fields_list = new ArrayList<>();
         List<String> fields_list_filter = new ArrayList<>();
         for (int i = 0; i < fileds.length; i++) {
@@ -192,10 +198,39 @@ public class RunUtil {
         log.info("====check_sql====");
         log.info(check_sql);
         log.info("====check_sql====");
-        Instance instance = runNum(dbconfig, dbTypeEnum.getConnectDriver(), compareNumSql, consistencyNumSql);
-        instance.setMagnitudeSql(compareNumSql);
-        instance.setConsistencySql(consistencyNumSql);
-        return instance;
+
+        DbTypeEnum dbTypeEnum = DbTypeEnum.findEnumByType(dbconfig.getType());
+        try {
+            Class.forName(dbTypeEnum.getConnectDriver());
+        } catch (ClassNotFoundException e) {
+            throw new Exception("注册驱动失败");
+        }
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
+            Statement stat = conn.createStatement();
+            ResultSet re = stat.executeQuery(check_sql);
+            ResultSetMetaData metaData = re.getMetaData();  //获取列集
+            int columnCount = metaData.getColumnCount(); //获取列的数量
+            List<LinkedHashMap<String, String>> list = new ArrayList<>();
+            while (re.next()) {
+                LinkedHashMap<String,String> hashMap = new LinkedHashMap();
+                for (int i = 0; i < columnCount; i++) { //循环列
+                    String columnName = metaData.getColumnName(i + 1); //通过序号获取列名,起始值为1
+                    String columnValue = re.getString(columnName);  //通过列名获取值.如果列值为空,columnValue为null,不是字符型
+                    hashMap.put(columnName, columnValue);
+                }
+                list.add(hashMap);
+            }
+            re.close();
+            stat.close();
+            conn.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("连接数据库失败");
+        }
+
     }
 
     //量级对比
