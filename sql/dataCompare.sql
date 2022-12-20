@@ -1,13 +1,3 @@
-/*
-Navicat MySQL Data Transfer
-
-Target Server Type    : MYSQL
-Target Server Version : 50736
-File Encoding         : 65001
-
-Date: 2022-12-12 18:05:37
-*/
-
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -24,7 +14,7 @@ CREATE TABLE `db_config` (
                              `create_time` datetime DEFAULT NULL COMMENT 'create_time',
                              `create_by` varchar(255) DEFAULT NULL COMMENT 'create_by',
                              PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='db config';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='db config';
 
 -- ----------------------------
 -- Table structure for gen_table
@@ -114,7 +104,7 @@ CREATE TABLE `job_config` (
                               `origin_table_group` text,
                               `to_table_group` text,
                               PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='job_config';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='job_config';
 
 -- ----------------------------
 -- Table structure for job_instance
@@ -137,7 +127,7 @@ CREATE TABLE `job_instance` (
                                 `dt` varchar(255) DEFAULT NULL COMMENT 'dt',
                                 `create_time` datetime DEFAULT NULL,
                                 PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='job_instance';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='job_instance';
 
 -- ----------------------------
 -- Table structure for QRTZ_BLOB_TRIGGERS
@@ -575,7 +565,7 @@ CREATE TABLE `sys_logininfor` (
                                   `msg` varchar(255) DEFAULT '' COMMENT '提示消息',
                                   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
                                   PRIMARY KEY (`info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=323 DEFAULT CHARSET=utf8 COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
@@ -700,6 +690,109 @@ INSERT INTO `sys_logininfor` VALUES ('216', 'admin', '127.0.0.1', '内网IP', 'C
 INSERT INTO `sys_logininfor` VALUES ('217', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-12 09:52:10');
 INSERT INTO `sys_logininfor` VALUES ('218', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-12 10:01:08');
 INSERT INTO `sys_logininfor` VALUES ('219', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-12 10:04:19');
+INSERT INTO `sys_logininfor` VALUES ('220', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-12 10:06:12');
+INSERT INTO `sys_logininfor` VALUES ('221', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 01:58:49');
+INSERT INTO `sys_logininfor` VALUES ('222', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:17:34');
+INSERT INTO `sys_logininfor` VALUES ('223', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:35:23');
+INSERT INTO `sys_logininfor` VALUES ('224', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:40:58');
+INSERT INTO `sys_logininfor` VALUES ('225', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:43:12');
+INSERT INTO `sys_logininfor` VALUES ('226', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:46:46');
+INSERT INTO `sys_logininfor` VALUES ('227', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:53:09');
+INSERT INTO `sys_logininfor` VALUES ('228', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 03:55:33');
+INSERT INTO `sys_logininfor` VALUES ('229', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 04:01:44');
+INSERT INTO `sys_logininfor` VALUES ('230', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 04:56:07');
+INSERT INTO `sys_logininfor` VALUES ('231', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:09:20');
+INSERT INTO `sys_logininfor` VALUES ('232', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:11:51');
+INSERT INTO `sys_logininfor` VALUES ('233', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:13:11');
+INSERT INTO `sys_logininfor` VALUES ('234', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:18:22');
+INSERT INTO `sys_logininfor` VALUES ('235', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:20:54');
+INSERT INTO `sys_logininfor` VALUES ('236', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:23:54');
+INSERT INTO `sys_logininfor` VALUES ('237', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 05:29:19');
+INSERT INTO `sys_logininfor` VALUES ('238', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:00:57');
+INSERT INTO `sys_logininfor` VALUES ('239', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:04:07');
+INSERT INTO `sys_logininfor` VALUES ('240', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:06:25');
+INSERT INTO `sys_logininfor` VALUES ('241', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:08:09');
+INSERT INTO `sys_logininfor` VALUES ('242', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:13:22');
+INSERT INTO `sys_logininfor` VALUES ('243', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:14:52');
+INSERT INTO `sys_logininfor` VALUES ('244', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:20:01');
+INSERT INTO `sys_logininfor` VALUES ('245', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:21:42');
+INSERT INTO `sys_logininfor` VALUES ('246', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:24:11');
+INSERT INTO `sys_logininfor` VALUES ('247', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:39:42');
+INSERT INTO `sys_logininfor` VALUES ('248', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:48:33');
+INSERT INTO `sys_logininfor` VALUES ('249', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 06:52:56');
+INSERT INTO `sys_logininfor` VALUES ('250', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 07:49:11');
+INSERT INTO `sys_logininfor` VALUES ('251', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 08:26:58');
+INSERT INTO `sys_logininfor` VALUES ('252', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 08:40:24');
+INSERT INTO `sys_logininfor` VALUES ('253', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 08:58:14');
+INSERT INTO `sys_logininfor` VALUES ('254', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-13 10:34:33');
+INSERT INTO `sys_logininfor` VALUES ('255', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-14 03:21:06');
+INSERT INTO `sys_logininfor` VALUES ('256', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 01:58:35');
+INSERT INTO `sys_logininfor` VALUES ('257', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 02:16:00');
+INSERT INTO `sys_logininfor` VALUES ('258', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 05:42:22');
+INSERT INTO `sys_logininfor` VALUES ('259', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:16:03');
+INSERT INTO `sys_logininfor` VALUES ('260', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:19:09');
+INSERT INTO `sys_logininfor` VALUES ('261', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:23:42');
+INSERT INTO `sys_logininfor` VALUES ('262', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:26:32');
+INSERT INTO `sys_logininfor` VALUES ('263', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:33:36');
+INSERT INTO `sys_logininfor` VALUES ('264', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:48:16');
+INSERT INTO `sys_logininfor` VALUES ('265', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:51:39');
+INSERT INTO `sys_logininfor` VALUES ('266', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:53:38');
+INSERT INTO `sys_logininfor` VALUES ('267', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 08:58:36');
+INSERT INTO `sys_logininfor` VALUES ('268', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:07:09');
+INSERT INTO `sys_logininfor` VALUES ('269', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:09:53');
+INSERT INTO `sys_logininfor` VALUES ('270', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:28:21');
+INSERT INTO `sys_logininfor` VALUES ('271', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:30:25');
+INSERT INTO `sys_logininfor` VALUES ('272', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:34:11');
+INSERT INTO `sys_logininfor` VALUES ('273', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:36:12');
+INSERT INTO `sys_logininfor` VALUES ('274', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:46:02');
+INSERT INTO `sys_logininfor` VALUES ('275', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:48:14');
+INSERT INTO `sys_logininfor` VALUES ('276', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:52:46');
+INSERT INTO `sys_logininfor` VALUES ('277', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:55:32');
+INSERT INTO `sys_logininfor` VALUES ('278', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:56:58');
+INSERT INTO `sys_logininfor` VALUES ('279', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 09:59:22');
+INSERT INTO `sys_logininfor` VALUES ('280', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:01:07');
+INSERT INTO `sys_logininfor` VALUES ('281', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:03:49');
+INSERT INTO `sys_logininfor` VALUES ('282', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:07:10');
+INSERT INTO `sys_logininfor` VALUES ('283', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:09:49');
+INSERT INTO `sys_logininfor` VALUES ('284', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:11:01');
+INSERT INTO `sys_logininfor` VALUES ('285', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:12:35');
+INSERT INTO `sys_logininfor` VALUES ('286', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:17:08');
+INSERT INTO `sys_logininfor` VALUES ('287', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:19:21');
+INSERT INTO `sys_logininfor` VALUES ('288', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 10:21:35');
+INSERT INTO `sys_logininfor` VALUES ('289', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 11:05:23');
+INSERT INTO `sys_logininfor` VALUES ('290', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-15 11:09:24');
+INSERT INTO `sys_logininfor` VALUES ('291', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 02:13:20');
+INSERT INTO `sys_logininfor` VALUES ('292', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 12:47:13');
+INSERT INTO `sys_logininfor` VALUES ('293', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 12:52:26');
+INSERT INTO `sys_logininfor` VALUES ('294', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 12:54:25');
+INSERT INTO `sys_logininfor` VALUES ('295', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 13:01:36');
+INSERT INTO `sys_logininfor` VALUES ('296', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 13:05:10');
+INSERT INTO `sys_logininfor` VALUES ('297', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 13:08:56');
+INSERT INTO `sys_logininfor` VALUES ('298', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 13:10:32');
+INSERT INTO `sys_logininfor` VALUES ('299', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-19 13:11:35');
+INSERT INTO `sys_logininfor` VALUES ('300', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 01:59:13');
+INSERT INTO `sys_logininfor` VALUES ('301', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 02:01:20');
+INSERT INTO `sys_logininfor` VALUES ('302', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 02:29:56');
+INSERT INTO `sys_logininfor` VALUES ('303', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 02:36:21');
+INSERT INTO `sys_logininfor` VALUES ('304', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 02:40:10');
+INSERT INTO `sys_logininfor` VALUES ('305', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 02:41:37');
+INSERT INTO `sys_logininfor` VALUES ('306', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 02:44:07');
+INSERT INTO `sys_logininfor` VALUES ('307', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 03:19:55');
+INSERT INTO `sys_logininfor` VALUES ('308', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 03:32:26');
+INSERT INTO `sys_logininfor` VALUES ('309', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:21:25');
+INSERT INTO `sys_logininfor` VALUES ('310', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:24:01');
+INSERT INTO `sys_logininfor` VALUES ('311', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:26:26');
+INSERT INTO `sys_logininfor` VALUES ('312', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:27:33');
+INSERT INTO `sys_logininfor` VALUES ('313', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:30:28');
+INSERT INTO `sys_logininfor` VALUES ('314', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:35:25');
+INSERT INTO `sys_logininfor` VALUES ('315', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:38:28');
+INSERT INTO `sys_logininfor` VALUES ('316', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:46:18');
+INSERT INTO `sys_logininfor` VALUES ('317', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:47:46');
+INSERT INTO `sys_logininfor` VALUES ('318', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 06:55:47');
+INSERT INTO `sys_logininfor` VALUES ('319', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 07:00:05');
+INSERT INTO `sys_logininfor` VALUES ('320', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 07:01:52');
+INSERT INTO `sys_logininfor` VALUES ('321', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 07:20:05');
+INSERT INTO `sys_logininfor` VALUES ('322', 'admin', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', '0', '登录成功', '2022-12-20 07:24:09');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -723,12 +816,12 @@ CREATE TABLE `sys_menu` (
                             `update_time` datetime DEFAULT NULL COMMENT '更新时间',
                             `remark` varchar(500) DEFAULT '' COMMENT '备注',
                             PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2007 DEFAULT CHARSET=utf8 COMMENT='菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=2008 DEFAULT CHARSET=utf8 COMMENT='菜单权限表';
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '1', '#', 'menuItem', 'M', '1', '1', '', 'fa fa-gear', 'admin', '2022-11-29 10:10:28', 'admin', '2022-12-12 09:52:29', '系统管理目录');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '1', '#', 'menuItem', 'M', '0', '1', '', 'fa fa-gear', 'admin', '2022-11-29 10:10:28', 'admin', '2022-12-12 09:52:29', '系统管理目录');
 INSERT INTO `sys_menu` VALUES ('2', '系统监控', '0', '2', '#', 'menuItem', 'M', '1', '1', '', 'fa fa-video-camera', 'admin', '2022-11-29 10:10:29', 'admin', '2022-12-12 09:24:32', '系统监控目录');
 INSERT INTO `sys_menu` VALUES ('3', '系统工具', '0', '3', '#', 'menuItem', 'M', '1', '1', '', 'fa fa-bars', 'admin', '2022-11-29 10:10:29', 'admin', '2022-12-12 09:24:39', '系统工具目录');
 INSERT INTO `sys_menu` VALUES ('4', '若依官网', '0', '4', 'http://ruoyi.vip', 'menuBlank', 'C', '1', '1', '', 'fa fa-location-arrow', 'admin', '2022-11-29 10:10:29', 'admin', '2022-12-12 09:24:48', '若依官网地址');
@@ -826,7 +919,8 @@ INSERT INTO `sys_menu` VALUES ('2002', '新增', '2000', '2', '#', 'menuItem', '
 INSERT INTO `sys_menu` VALUES ('2003', '修改', '2000', '3', '#', 'menuItem', 'F', '0', '1', 'system:dbconfig:edit', '#', 'admin', '2022-11-30 07:22:51', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2004', '删除', '2000', '4', '#', 'menuItem', 'F', '0', '1', 'system:dbconfig:remove', '#', 'admin', '2022-11-30 07:23:53', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2005', '运行实例', '5', '3', '/system/jobInstance', 'menuItem', 'C', '0', '1', '/system/jobInstance', 'fa fa-asterisk', 'admin', '2022-12-12 03:41:51', 'admin', '2022-12-12 03:50:16', '');
-INSERT INTO `sys_menu` VALUES ('2006', '查看详情', '2005', '1', '#', 'menuItem', 'F', '0', '1', null, '#', 'admin', '2022-12-12 03:42:42', '', null, '');
+INSERT INTO `sys_menu` VALUES ('2006', '查看详情', '2005', '1', '#', 'menuItem', 'F', '0', '1', 'system:jobInstance:detail', '#', 'admin', '2022-12-12 03:42:42', 'admin', '2022-12-19 12:50:41', '');
+INSERT INTO `sys_menu` VALUES ('2007', '查看差异', '2005', '2', '#', 'menuItem', 'F', '0', '1', 'system:jobInstance:diffDetail', '#', 'admin', '2022-12-19 12:50:09', 'admin', '2022-12-19 12:51:15', '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -874,99 +968,24 @@ CREATE TABLE `sys_oper_log` (
                                 `error_msg` varchar(2000) DEFAULT '' COMMENT '错误消息',
                                 `oper_time` datetime DEFAULT NULL COMMENT '操作时间',
                                 PRIMARY KEY (`oper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=171 DEFAULT CHARSET=utf8 COMMENT='操作日志记录';
-
--- ----------------------------
--- Records of sys_oper_log
--- ----------------------------
-INSERT INTO `sys_oper_log` VALUES ('100', '定时任务', '2', 'com.ruoyi.project.monitor.job.controller.JobController.run()', 'POST', '1', 'admin', '研发部门', '/monitor/job/run', '127.0.0.1', '内网IP', '{\"jobId\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-25 05:08:24');
-INSERT INTO `sys_oper_log` VALUES ('101', '在线用户', '7', 'com.ruoyi.project.monitor.online.controller.UserOnlineController.batchForceLogout()', 'POST', '1', 'admin', '研发部门', '/monitor/online/batchForceLogout', '127.0.0.1', '内网IP', '{\"ids\":[\"3bf61569-b0b9-468b-8513-612d86e1656c\"]}', '{\"msg\":\"当前登录用户无法强退\",\"code\":500}', '0', null, '2022-11-25 05:21:53');
-INSERT INTO `sys_oper_log` VALUES ('102', '个人信息', '2', 'com.xq.project.system.user.controller.ProfileController.update()', 'POST', '1', 'admin', '研发部门', '/system/user/profile/update', '127.0.0.1', '内网IP', '{\"id\":[\"\"],\"userName\":[\"admin\"],\"phonenumber\":[\"15888888888\"],\"email\":[\"ry@163.com\"],\"sex\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-29 05:06:53');
-INSERT INTO `sys_oper_log` VALUES ('103', '岗位管理', '3', 'com.xq.project.system.post.controller.PostController.remove()', 'POST', '1', 'admin', '研发部门', '/system/post/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"4\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-29 06:19:00');
-INSERT INTO `sys_oper_log` VALUES ('104', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"117\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"数据配置\"],\"url\":[\"/system/dbconfig\"],\"target\":[\"menuItem\"],\"perms\":[\"system:config:view\"],\"orderNum\":[\"1\"],\"icon\":[\"fa fa-gg\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 02:14:33');
-INSERT INTO `sys_oper_log` VALUES ('105', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"1063\"],\"parentId\":[\"117\"],\"menuType\":[\"F\"],\"menuName\":[\"配置新增\"],\"url\":[\"#\"],\"target\":[\"menuItem\"],\"perms\":[\"system:dbconfig:add\"],\"orderNum\":[\"2\"],\"icon\":[\"#\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 02:16:00');
-INSERT INTO `sys_oper_log` VALUES ('106', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"MySQL\"],\"url\":[\"1\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', null, '1', '\r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column \'create_by\' in \'field list\'\r\n### The error may exist in file [D:\\project\\data-compare\\target\\classes\\mybatis\\system\\DbconfigMapper.xml]\r\n### The error may involve com.xq.project.system.dbconfig.mapper.DbconfigMapper.checkConnectNameUnique-Inline\r\n### The error occurred while setting parameters\r\n### SQL: select id, connect_name,type, url, user_name, pwd,create_by, create_time   from db_config          where connection_name =? limit 1\r\n### Cause: java.sql.SQLSyntaxErrorException: Unknown column \'create_by\' in \'field list\'\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column \'create_by\' in \'field list\'', '2022-11-30 03:11:25');
-INSERT INTO `sys_oper_log` VALUES ('107', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"MySQL\"],\"url\":[\"1\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', null, '1', '\r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column \'connection_name\' in \'where clause\'\r\n### The error may exist in file [D:\\project\\data-compare\\target\\classes\\mybatis\\system\\DbconfigMapper.xml]\r\n### The error may involve com.xq.project.system.dbconfig.mapper.DbconfigMapper.checkConnectNameUnique-Inline\r\n### The error occurred while setting parameters\r\n### SQL: select id, connect_name,type, url, user_name, pwd,create_by, create_time   from db_config          where connection_name =? limit 1\r\n### Cause: java.sql.SQLSyntaxErrorException: Unknown column \'connection_name\' in \'where clause\'\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column \'connection_name\' in \'where clause\'', '2022-11-30 03:12:09');
-INSERT INTO `sys_oper_log` VALUES ('108', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"1\"],\"type\":[\"MySQL\"],\"url\":[\"1\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', null, '1', 'nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named \'user\' in \'class com.xq.project.system.dbconfig.domain.Dbconfig\'', '2022-11-30 03:14:15');
-INSERT INTO `sys_oper_log` VALUES ('109', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"MySQL\"],\"url\":[\"test\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', null, '1', '\r\n### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: Column \'url\' specified twice\r\n### The error may exist in file [D:\\project\\data-compare\\target\\classes\\mybatis\\system\\DbconfigMapper.xml]\r\n### The error may involve com.xq.project.system.dbconfig.mapper.DbconfigMapper.insertDbconfig-Inline\r\n### The error occurred while setting parameters\r\n### SQL: insert into db_config(      connect_name,       url,      url,       user_name,       pwd,      create_by,      create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      sysdate()    )\r\n### Cause: java.sql.SQLSyntaxErrorException: Column \'url\' specified twice\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Column \'url\' specified twice', '2022-11-30 03:16:09');
-INSERT INTO `sys_oper_log` VALUES ('110', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"Hive\"],\"url\":[\"test\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 03:18:39');
-INSERT INTO `sys_oper_log` VALUES ('111', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"undefined\"]}', '{\"msg\":\"操作失败\",\"code\":500}', '0', null, '2022-11-30 03:18:48');
-INSERT INTO `sys_oper_log` VALUES ('112', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"3\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 04:51:43');
-INSERT INTO `sys_oper_log` VALUES ('113', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"MySQL\"],\"url\":[\"test\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 04:51:51');
-INSERT INTO `sys_oper_log` VALUES ('114', '岗位管理', '2', 'com.xq.project.system.dbconfig.controller.DbConfigController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/edit', '127.0.0.1', '内网IP', '{\"id\":[\"4\"],\"connectName\":[\"test1\"],\"type\":[\"MySQL\"],\"url\":[\"test\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 04:52:04');
-INSERT INTO `sys_oper_log` VALUES ('115', '岗位管理', '2', 'com.xq.project.system.dbconfig.controller.DbConfigController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/edit', '127.0.0.1', '内网IP', '{\"id\":[\"4\"],\"connectName\":[\"test1\"],\"type\":[\"Hive\"],\"url\":[\"test\"],\"userName\":[\"admin\"],\"pwd\":[\"admin123\"]}', '{\"msg\":\"修改数据库连接名称\'test1\'失败，数据库连接名称已存在\",\"code\":500}', '0', null, '2022-11-30 04:54:54');
-INSERT INTO `sys_oper_log` VALUES ('116', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test11\"],\"type\":[\"MySQL\"],\"url\":[\"jdbc:mysql://10.71.7.89:3306\"],\"userName\":[\"root\"],\"pwd\":[\"123456\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:06:16');
-INSERT INTO `sys_oper_log` VALUES ('117', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"4\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:06:45');
-INSERT INTO `sys_oper_log` VALUES ('118', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"MySQL\"],\"url\":[\"jdbc:mysql://10.71.7.89:3306\"],\"userName\":[\"root\"],\"pwd\":[\"123456\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:07:13');
-INSERT INTO `sys_oper_log` VALUES ('119', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"123\"],\"type\":[\"MySQL\"],\"url\":[\"jdbc:mysql://10.71.7.89:3306\"],\"userName\":[\"root\"],\"pwd\":[\"123\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:08:19');
-INSERT INTO `sys_oper_log` VALUES ('120', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"7\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:09:01');
-INSERT INTO `sys_oper_log` VALUES ('121', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"6\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:09:03');
-INSERT INTO `sys_oper_log` VALUES ('122', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"5\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:09:05');
-INSERT INTO `sys_oper_log` VALUES ('123', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test\"],\"type\":[\"MySQL\"],\"url\":[\"jdbc:mysql://10.71.7.89:3306\"],\"userName\":[\"root\"],\"pwd\":[\"123456\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 06:20:08');
-INSERT INTO `sys_oper_log` VALUES ('124', 'add', '1', 'com.xq.project.system.dbconfig.controller.DbConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/add', '127.0.0.1', '内网IP', '{\"connectName\":[\"test1112\"],\"type\":[\"MySQL\"],\"url\":[\"jdbc:mysql://10.71.7.89:3306\\t\"],\"userName\":[\"root\"],\"pwd\":[\"123456\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:07:03');
-INSERT INTO `sys_oper_log` VALUES ('125', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"任务配置\"],\"url\":[\"/system/jobconfig\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"2\"],\"icon\":[\"fa fa-archive\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:16:51');
-INSERT INTO `sys_oper_log` VALUES ('126', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"117\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"数据配置\"],\"url\":[\"/system/dbconfig\"],\"target\":[\"menuItem\"],\"perms\":[\"system:dbconfig:view\"],\"orderNum\":[\"1\"],\"icon\":[\"fa fa-gg\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:17:43');
-INSERT INTO `sys_oper_log` VALUES ('127', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"2000\"],\"menuType\":[\"F\"],\"menuName\":[\"查询\"],\"url\":[\"system:dbconfig:list\"],\"target\":[\"menuItem\"],\"perms\":[\"system:jobconfig:list\"],\"orderNum\":[\"1\"],\"icon\":[\"\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:18:54');
-INSERT INTO `sys_oper_log` VALUES ('128', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2000\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"任务配置\"],\"url\":[\"/system/jobconfig\"],\"target\":[\"menuItem\"],\"perms\":[\"system:jobconfig:view\"],\"orderNum\":[\"2\"],\"icon\":[\"fa fa-archive\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:19:45');
-INSERT INTO `sys_oper_log` VALUES ('129', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"2000\"],\"menuType\":[\"F\"],\"menuName\":[\"新增\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:dbconfig:add\"],\"orderNum\":[\"2\"],\"icon\":[\"\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:22:19');
-INSERT INTO `sys_oper_log` VALUES ('130', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"2000\"],\"menuType\":[\"F\"],\"menuName\":[\"修改\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:dbconfig:edit\"],\"orderNum\":[\"3\"],\"icon\":[\"\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:22:51');
-INSERT INTO `sys_oper_log` VALUES ('131', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2001\"],\"parentId\":[\"2000\"],\"menuType\":[\"F\"],\"menuName\":[\"查询\"],\"url\":[\"system:dbconfig:list\"],\"target\":[\"menuItem\"],\"perms\":[\"system:jobconfig:list\"],\"orderNum\":[\"1\"],\"icon\":[\"#\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:23:02');
-INSERT INTO `sys_oper_log` VALUES ('132', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"2000\"],\"menuType\":[\"F\"],\"menuName\":[\"删除\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"system:dbconfig:remove\"],\"orderNum\":[\"4\"],\"icon\":[\"\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 07:23:53');
-INSERT INTO `sys_oper_log` VALUES ('133', '岗位管理', '3', 'com.xq.project.system.dbconfig.controller.DbConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/dbconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-11-30 09:43:31');
-INSERT INTO `sys_oper_log` VALUES ('134', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-04 12:10:09');
-INSERT INTO `sys_oper_log` VALUES ('135', '岗位管理', '3', 'com.xq.project.system.jobconfig.controller.JobConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"3\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-05 08:53:35');
-INSERT INTO `sys_oper_log` VALUES ('136', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-05 08:53:48');
-INSERT INTO `sys_oper_log` VALUES ('137', '岗位管理', '3', 'com.xq.project.system.jobconfig.controller.JobConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"4\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-05 08:54:25');
-INSERT INTO `sys_oper_log` VALUES ('138', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-05 08:54:47');
-INSERT INTO `sys_oper_log` VALUES ('139', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-06 12:44:21');
-INSERT INTO `sys_oper_log` VALUES ('140', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"],\"toTablePrimary\":[\"id\"],\"toTableFields\":[\"name,age\"],\"toTableFilter\":[\"where name=\'xiaomi\'\"],\"toTableGroup\":[\"group by name\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-06 12:46:16');
-INSERT INTO `sys_oper_log` VALUES ('141', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"],\"toTablePrimary\":[\"id\"],\"toTableFields\":[\"name,age\"],\"toTableFilter\":[\"where name=\'xiaomi\'\"],\"toTableGroup\":[\"group by name\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-06 12:54:04');
-INSERT INTO `sys_oper_log` VALUES ('142', '岗位管理', '3', 'com.xq.project.system.jobconfig.controller.JobConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"5\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-06 12:56:14');
-INSERT INTO `sys_oper_log` VALUES ('143', '岗位管理', '3', 'com.xq.project.system.jobconfig.controller.JobConfigController.remove()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/remove', '127.0.0.1', '内网IP', '{\"ids\":[\"6\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-06 12:56:16');
-INSERT INTO `sys_oper_log` VALUES ('144', 'add', '1', 'com.xq.project.system.jobconfig.controller.JobConfigController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/add', '127.0.0.1', '内网IP', '{\"dbConfigId\":[\"9\"],\"originTableName\":[\"test_db.user_info\"],\"originTablePrimary\":[\"id\"],\"originTableFields\":[\"name,age\"],\"originTableFilter\":[\"where name=\'xiaomi\'\"],\"originTableGroup\":[\"group by name\"],\"toTableName\":[\"test_db.user_info\"],\"toTablePrimary\":[\"id\"],\"toTableFields\":[\"name,age\"],\"toTableFilter\":[\"where name=\'xiaomi\'\"],\"toTableGroup\":[\"group by name\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-06 12:56:33');
-INSERT INTO `sys_oper_log` VALUES ('145', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"运行实例\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-address-card\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:41:51');
-INSERT INTO `sys_oper_log` VALUES ('146', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2005\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"运行实例\"],\"url\":[\"#\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-asterisk\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:42:10');
-INSERT INTO `sys_oper_log` VALUES ('147', '菜单管理', '1', 'com.xq.project.system.menu.controller.MenuController.addSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/add', '127.0.0.1', '内网IP', '{\"parentId\":[\"2005\"],\"menuType\":[\"F\"],\"menuName\":[\"查看详情\"],\"url\":[\"\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"1\"],\"icon\":[\"\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:42:42');
-INSERT INTO `sys_oper_log` VALUES ('148', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2005\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"运行实例\"],\"url\":[\"#\"],\"target\":[\"menuItem\"],\"perms\":[\"/system/instance\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-asterisk\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:43:27');
-INSERT INTO `sys_oper_log` VALUES ('149', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2005\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"运行实例\"],\"url\":[\"/system/Instance\"],\"target\":[\"menuItem\"],\"perms\":[\"/system/Instance\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-asterisk\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:46:45');
-INSERT INTO `sys_oper_log` VALUES ('150', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2005\"],\"parentId\":[\"5\"],\"menuType\":[\"C\"],\"menuName\":[\"运行实例\"],\"url\":[\"/system/jobInstance\"],\"target\":[\"menuItem\"],\"perms\":[\"/system/jobInstance\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-asterisk\"],\"visible\":[\"0\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:50:16');
-INSERT INTO `sys_oper_log` VALUES ('151', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"7\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 03:50:51');
-INSERT INTO `sys_oper_log` VALUES ('152', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"操作失败\",\"code\":500}', '0', null, '2022-12-12 08:19:32');
-INSERT INTO `sys_oper_log` VALUES ('153', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"操作失败\",\"code\":500}', '0', null, '2022-12-12 08:19:54');
-INSERT INTO `sys_oper_log` VALUES ('154', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named \'to_table_uv\' in \'class com.xq.project.system.instance.domain.Instance\'\",\"code\":500}', '0', null, '2022-12-12 08:25:44');
-INSERT INTO `sys_oper_log` VALUES ('155', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named \'to_table_uv\' in \'class com.xq.project.system.instance.domain.Instance\'\",\"code\":500}', '0', null, '2022-12-12 08:28:15');
-INSERT INTO `sys_oper_log` VALUES ('156', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named \'to_table_uv\' in \'class com.xq.project.system.instance.domain.Instance\'\",\"code\":500}', '0', null, '2022-12-12 08:33:21');
-INSERT INTO `sys_oper_log` VALUES ('157', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"\\r\\n### Error updating database.  Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\r\\n### The error may exist in file [D:\\\\project\\\\data-compare\\\\target\\\\classes\\\\mybatis\\\\system\\\\InstanceMapper.xml]\\r\\n### The error may involve com.xq.project.system.instance.mapper.InstanceMapper.insertInstance-Inline\\r\\n### The error occurred while setting parameters\\r\\n### SQL: insert into job_instance(      jobconfig_id,       origin_table_pv,      origin_table_uv,       to_table_pv,       to_table_uv,      pv_diff,      uv_diff,      magnitude_sql,      origin_table_count,      to_table_count,      count_diff,      consistency_sql,           create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      ?,      ?,      ?,      ?,      ?      ?,           sysdate()    )\\r\\n### Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\n; bad SQL grammar []; nested exception is java.sql.SQLException: Column count doesn\'t match value count at row 1\",\"code\":500}', '0', null, '2022-12-12 08:40:37');
-INSERT INTO `sys_oper_log` VALUES ('158', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"\\r\\n### Error updating database.  Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\r\\n### The error may exist in file [D:\\\\project\\\\data-compare\\\\target\\\\classes\\\\mybatis\\\\system\\\\InstanceMapper.xml]\\r\\n### The error may involve com.xq.project.system.instance.mapper.InstanceMapper.insertInstance-Inline\\r\\n### The error occurred while setting parameters\\r\\n### SQL: insert into job_instance(      jobconfig_id,       origin_table_pv,      origin_table_uv,       to_table_pv,       to_table_uv,      pv_diff,      uv_diff,      magnitude_sql,      origin_table_count,      to_table_count,      count_diff,      consistency_sql,           create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      ?,      ?,      ?,      ?,      ?      ?,           sysdate()    )\\r\\n### Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\n; bad SQL grammar []; nested exception is java.sql.SQLException: Column count doesn\'t match value count at row 1\",\"code\":500}', '0', null, '2022-12-12 08:46:58');
-INSERT INTO `sys_oper_log` VALUES ('159', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"\\r\\n### Error updating database.  Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\r\\n### The error may exist in file [D:\\\\project\\\\data-compare\\\\target\\\\classes\\\\mybatis\\\\system\\\\InstanceMapper.xml]\\r\\n### The error may involve com.xq.project.system.instance.mapper.InstanceMapper.insertInstance-Inline\\r\\n### The error occurred while setting parameters\\r\\n### SQL: insert into job_instance(      jobconfig_id,       origin_table_pv,      origin_table_uv,       to_table_pv,       to_table_uv,      pv_diff,      uv_diff,      magnitude_sql,      origin_table_count,      to_table_count,      count_diff,      consistency_sql,           create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      ?,      ?,      ?,      ?,      ?      ?,           sysdate()    )\\r\\n### Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\n; bad SQL grammar []; nested exception is java.sql.SQLException: Column count doesn\'t match value count at row 1\",\"code\":500}', '0', null, '2022-12-12 08:58:12');
-INSERT INTO `sys_oper_log` VALUES ('160', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"\\r\\n### Error updating database.  Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\r\\n### The error may exist in file [D:\\\\project\\\\data-compare\\\\target\\\\classes\\\\mybatis\\\\system\\\\InstanceMapper.xml]\\r\\n### The error may involve com.xq.project.system.instance.mapper.InstanceMapper.insertInstance-Inline\\r\\n### The error occurred while setting parameters\\r\\n### SQL: insert into job_instance(      jobconfig_id,       origin_table_pv,      origin_table_uv,       to_table_pv,       to_table_uv,      pv_diff,      uv_diff,      magnitude_sql,      origin_table_count,      to_table_count,      count_diff,      consistency_sql,      create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      ?,      ?,      ?,      ?,      ?      ?,      sysdate()    )\\r\\n### Cause: java.sql.SQLException: Column count doesn\'t match value count at row 1\\n; bad SQL grammar []; nested exception is java.sql.SQLException: Column count doesn\'t match value count at row 1\",\"code\":500}', '0', null, '2022-12-12 09:00:23');
-INSERT INTO `sys_oper_log` VALUES ('161', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"\\r\\n### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column \'jobconfig_id\' in \'field list\'\\r\\n### The error may exist in file [D:\\\\project\\\\data-compare\\\\target\\\\classes\\\\mybatis\\\\system\\\\InstanceMapper.xml]\\r\\n### The error may involve com.xq.project.system.instance.mapper.InstanceMapper.insertInstance-Inline\\r\\n### The error occurred while setting parameters\\r\\n### SQL: insert into job_instance(      jobconfig_id,       origin_table_pv,      origin_table_uv,       to_table_pv,       to_table_uv,      pv_diff,      uv_diff,      magnitude_sql,      origin_table_count,      to_table_count,      count_diff,      consistency_sql,           create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      ?,      ?,      ?,      ?,      ?,      ?,           sysdate()    )\\r\\n### Cause: java.sql.SQLSyntaxErrorException: Unknown column \'jobconfig_id\' in \'field list\'\\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column \'jobconfig_id\' in \'field list\'\",\"code\":500}', '0', null, '2022-12-12 09:02:16');
-INSERT INTO `sys_oper_log` VALUES ('162', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"\\r\\n### Error updating database.  Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'magnitude_sql\' at row 1\\r\\n### The error may exist in file [D:\\\\project\\\\data-compare\\\\target\\\\classes\\\\mybatis\\\\system\\\\InstanceMapper.xml]\\r\\n### The error may involve com.xq.project.system.instance.mapper.InstanceMapper.insertInstance-Inline\\r\\n### The error occurred while setting parameters\\r\\n### SQL: insert into job_instance(      job_config_id,       origin_table_pv,      origin_table_uv,       to_table_pv,       to_table_uv,      pv_diff,      uv_diff,      magnitude_sql,      origin_table_count,      to_table_count,      count_diff,      consistency_sql,           create_time    )values(      ?,      ?,       ?,       ?,       ?,      ?,      ?,      ?,      ?,      ?,      ?,      ?,           sysdate()    )\\r\\n### Cause: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'magnitude_sql\' at row 1\\n; Data truncation: Data too long for column \'magnitude_sql\' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column \'magnitude_sql\' at row 1\",\"code\":500}', '0', null, '2022-12-12 09:04:18');
-INSERT INTO `sys_oper_log` VALUES ('163', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"操作失败\",\"code\":500}', '0', null, '2022-12-12 09:07:03');
-INSERT INTO `sys_oper_log` VALUES ('164', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"9\"]}', '{\"msg\":\"操作失败\",\"code\":500}', '0', null, '2022-12-12 09:07:33');
-INSERT INTO `sys_oper_log` VALUES ('165', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 09:15:07');
-INSERT INTO `sys_oper_log` VALUES ('166', 'job管理', '10', 'com.xq.project.system.jobconfig.controller.JobConfigController.run()', 'POST', '1', 'admin', '研发部门', '/system/jobconfig/run', '127.0.0.1', '内网IP', '{\"ids\":[\"8\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 09:17:49');
-INSERT INTO `sys_oper_log` VALUES ('167', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"2\"],\"parentId\":[\"0\"],\"menuType\":[\"M\"],\"menuName\":[\"系统监控\"],\"url\":[\"#\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"2\"],\"icon\":[\"fa fa-video-camera\"],\"visible\":[\"1\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 09:24:32');
-INSERT INTO `sys_oper_log` VALUES ('168', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"3\"],\"parentId\":[\"0\"],\"menuType\":[\"M\"],\"menuName\":[\"系统工具\"],\"url\":[\"#\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"3\"],\"icon\":[\"fa fa-bars\"],\"visible\":[\"1\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 09:24:39');
-INSERT INTO `sys_oper_log` VALUES ('169', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"4\"],\"parentId\":[\"0\"],\"menuType\":[\"C\"],\"menuName\":[\"若依官网\"],\"url\":[\"http://ruoyi.vip\"],\"target\":[\"menuBlank\"],\"perms\":[\"\"],\"orderNum\":[\"4\"],\"icon\":[\"fa fa-location-arrow\"],\"visible\":[\"1\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 09:24:48');
-INSERT INTO `sys_oper_log` VALUES ('170', '菜单管理', '2', 'com.xq.project.system.menu.controller.MenuController.editSave()', 'POST', '1', 'admin', '研发部门', '/system/menu/edit', '127.0.0.1', '内网IP', '{\"menuId\":[\"1\"],\"parentId\":[\"0\"],\"menuType\":[\"M\"],\"menuName\":[\"系统管理\"],\"url\":[\"#\"],\"target\":[\"menuItem\"],\"perms\":[\"\"],\"orderNum\":[\"1\"],\"icon\":[\"fa fa-gear\"],\"visible\":[\"1\"],\"isRefresh\":[\"1\"]}', '{\"msg\":\"操作成功\",\"code\":0}', '0', null, '2022-12-12 09:52:29');
+) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8 COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Table structure for sys_post
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_post`;
 CREATE TABLE `sys_post` (
-  `post_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
-  `post_code` varchar(64) NOT NULL COMMENT '岗位编码',
-  `post_name` varchar(50) NOT NULL COMMENT '岗位名称',
-  `post_sort` int(4) NOT NULL COMMENT '显示顺序',
-  `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`post_id`)
+                            `post_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '岗位ID',
+                            `post_code` varchar(64) NOT NULL COMMENT '岗位编码',
+                            `post_name` varchar(50) NOT NULL COMMENT '岗位名称',
+                            `post_sort` int(4) NOT NULL COMMENT '显示顺序',
+                            `status` char(1) NOT NULL COMMENT '状态（0正常 1停用）',
+                            `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+                            `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                            `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+                            `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                            `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+                            PRIMARY KEY (`post_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='岗位信息表';
 
 -- ----------------------------
@@ -981,19 +1000,19 @@ INSERT INTO `sys_post` VALUES ('3', 'hr', '人力资源', '3', '0', 'admin', '20
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role` (
-  `role_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
-  `role_name` varchar(30) NOT NULL COMMENT '角色名称',
-  `role_key` varchar(100) NOT NULL COMMENT '角色权限字符串',
-  `role_sort` int(4) NOT NULL COMMENT '显示顺序',
-  `data_scope` char(1) DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
-  `status` char(1) NOT NULL COMMENT '角色状态（0正常 1停用）',
-  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`role_id`)
+                            `role_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+                            `role_name` varchar(30) NOT NULL COMMENT '角色名称',
+                            `role_key` varchar(100) NOT NULL COMMENT '角色权限字符串',
+                            `role_sort` int(4) NOT NULL COMMENT '显示顺序',
+                            `data_scope` char(1) DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限 3：本部门数据权限 4：本部门及以下数据权限）',
+                            `status` char(1) NOT NULL COMMENT '角色状态（0正常 1停用）',
+                            `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+                            `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+                            `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                            `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+                            `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                            `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+                            PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='角色信息表';
 
 -- ----------------------------
@@ -1007,9 +1026,9 @@ INSERT INTO `sys_role` VALUES ('2', '普通角色', 'common', '2', '2', '0', '0'
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_dept`;
 CREATE TABLE `sys_role_dept` (
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
-  `dept_id` bigint(20) NOT NULL COMMENT '部门ID',
-  PRIMARY KEY (`role_id`,`dept_id`)
+                                 `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+                                 `dept_id` bigint(20) NOT NULL COMMENT '部门ID',
+                                 PRIMARY KEY (`role_id`,`dept_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色和部门关联表';
 
 -- ----------------------------
@@ -1024,9 +1043,9 @@ INSERT INTO `sys_role_dept` VALUES ('2', '105');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu` (
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
-  `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
-  PRIMARY KEY (`role_id`,`menu_id`)
+                                 `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+                                 `menu_id` bigint(20) NOT NULL COMMENT '菜单ID',
+                                 PRIMARY KEY (`role_id`,`menu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色和菜单关联表';
 
 -- ----------------------------
@@ -1130,34 +1149,34 @@ INSERT INTO `sys_role_menu` VALUES ('2', '1066');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user` (
-  `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  `dept_id` bigint(20) DEFAULT NULL COMMENT '部门ID',
-  `login_name` varchar(30) NOT NULL COMMENT '登录账号',
-  `user_name` varchar(30) DEFAULT '' COMMENT '用户昵称',
-  `user_type` varchar(2) DEFAULT '00' COMMENT '用户类型（00系统用户 01注册用户）',
-  `email` varchar(50) DEFAULT '' COMMENT '用户邮箱',
-  `phonenumber` varchar(11) DEFAULT '' COMMENT '手机号码',
-  `sex` char(1) DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
-  `avatar` varchar(100) DEFAULT '' COMMENT '头像路径',
-  `password` varchar(50) DEFAULT '' COMMENT '密码',
-  `salt` varchar(20) DEFAULT '' COMMENT '盐加密',
-  `status` char(1) DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
-  `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
-  `login_ip` varchar(128) DEFAULT '' COMMENT '最后登录IP',
-  `login_date` datetime DEFAULT NULL COMMENT '最后登录时间',
-  `pwd_update_date` datetime DEFAULT NULL COMMENT '密码最后更新时间',
-  `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
-  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-  `remark` varchar(500) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`user_id`)
+                            `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+                            `dept_id` bigint(20) DEFAULT NULL COMMENT '部门ID',
+                            `login_name` varchar(30) NOT NULL COMMENT '登录账号',
+                            `user_name` varchar(30) DEFAULT '' COMMENT '用户昵称',
+                            `user_type` varchar(2) DEFAULT '00' COMMENT '用户类型（00系统用户 01注册用户）',
+                            `email` varchar(50) DEFAULT '' COMMENT '用户邮箱',
+                            `phonenumber` varchar(11) DEFAULT '' COMMENT '手机号码',
+                            `sex` char(1) DEFAULT '0' COMMENT '用户性别（0男 1女 2未知）',
+                            `avatar` varchar(100) DEFAULT '' COMMENT '头像路径',
+                            `password` varchar(50) DEFAULT '' COMMENT '密码',
+                            `salt` varchar(20) DEFAULT '' COMMENT '盐加密',
+                            `status` char(1) DEFAULT '0' COMMENT '帐号状态（0正常 1停用）',
+                            `del_flag` char(1) DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+                            `login_ip` varchar(128) DEFAULT '' COMMENT '最后登录IP',
+                            `login_date` datetime DEFAULT NULL COMMENT '最后登录时间',
+                            `pwd_update_date` datetime DEFAULT NULL COMMENT '密码最后更新时间',
+                            `create_by` varchar(64) DEFAULT '' COMMENT '创建者',
+                            `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                            `update_by` varchar(64) DEFAULT '' COMMENT '更新者',
+                            `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                            `remark` varchar(500) DEFAULT NULL COMMENT '备注',
+                            PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', 'admin', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2022-12-12 18:04:19', '2022-11-25 05:03:52', 'admin', '2022-11-25 05:03:52', '', '2022-12-12 10:04:19', '管理员');
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', 'admin', '00', 'ry@163.com', '15888888888', '1', '', '29c67a30398638269fe600f73a054934', '111111', '0', '0', '127.0.0.1', '2022-12-20 15:24:08', '2022-11-25 05:03:52', 'admin', '2022-11-25 05:03:52', '', '2022-12-20 07:24:09', '管理员');
 INSERT INTO `sys_user` VALUES ('2', '105', 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '8e6d98b90472783cc73c17047ddccf36', '222222', '0', '0', '127.0.0.1', '2022-11-25 05:03:52', '2022-11-25 05:03:52', 'admin', '2022-11-25 05:03:52', '', null, '测试员');
 
 -- ----------------------------
@@ -1165,33 +1184,33 @@ INSERT INTO `sys_user` VALUES ('2', '105', 'ry', '若依', '00', 'ry@qq.com', '1
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_online`;
 CREATE TABLE `sys_user_online` (
-  `sessionId` varchar(50) NOT NULL DEFAULT '' COMMENT '用户会话id',
-  `login_name` varchar(50) DEFAULT '' COMMENT '登录账号',
-  `dept_name` varchar(50) DEFAULT '' COMMENT '部门名称',
-  `ipaddr` varchar(128) DEFAULT '' COMMENT '登录IP地址',
-  `login_location` varchar(255) DEFAULT '' COMMENT '登录地点',
-  `browser` varchar(50) DEFAULT '' COMMENT '浏览器类型',
-  `os` varchar(50) DEFAULT '' COMMENT '操作系统',
-  `status` varchar(10) DEFAULT '' COMMENT '在线状态on_line在线off_line离线',
-  `start_timestamp` datetime DEFAULT NULL COMMENT 'session创建时间',
-  `last_access_time` datetime DEFAULT NULL COMMENT 'session最后访问时间',
-  `expire_time` int(5) DEFAULT '0' COMMENT '超时时间，单位为分钟',
-  PRIMARY KEY (`sessionId`)
+                                   `sessionId` varchar(50) NOT NULL DEFAULT '' COMMENT '用户会话id',
+                                   `login_name` varchar(50) DEFAULT '' COMMENT '登录账号',
+                                   `dept_name` varchar(50) DEFAULT '' COMMENT '部门名称',
+                                   `ipaddr` varchar(128) DEFAULT '' COMMENT '登录IP地址',
+                                   `login_location` varchar(255) DEFAULT '' COMMENT '登录地点',
+                                   `browser` varchar(50) DEFAULT '' COMMENT '浏览器类型',
+                                   `os` varchar(50) DEFAULT '' COMMENT '操作系统',
+                                   `status` varchar(10) DEFAULT '' COMMENT '在线状态on_line在线off_line离线',
+                                   `start_timestamp` datetime DEFAULT NULL COMMENT 'session创建时间',
+                                   `last_access_time` datetime DEFAULT NULL COMMENT 'session最后访问时间',
+                                   `expire_time` int(5) DEFAULT '0' COMMENT '超时时间，单位为分钟',
+                                   PRIMARY KEY (`sessionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='在线用户记录';
 
 -- ----------------------------
 -- Records of sys_user_online
 -- ----------------------------
-INSERT INTO `sys_user_online` VALUES ('41fa80ab-26a9-47c6-9b86-a555359fd31c', 'admin', '研发部门', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', 'on_line', '2022-12-12 18:04:16', '2022-12-12 18:04:23', '1800000');
+INSERT INTO `sys_user_online` VALUES ('a7346ff6-e689-4450-9b41-676bc0eedc98', 'admin', '研发部门', '127.0.0.1', '内网IP', 'Chrome 10', 'Windows 10', 'on_line', '2022-12-20 15:24:06', '2022-12-20 15:24:08', '1800000');
 
 -- ----------------------------
 -- Table structure for sys_user_post
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_post`;
 CREATE TABLE `sys_user_post` (
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `post_id` bigint(20) NOT NULL COMMENT '岗位ID',
-  PRIMARY KEY (`user_id`,`post_id`)
+                                 `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+                                 `post_id` bigint(20) NOT NULL COMMENT '岗位ID',
+                                 PRIMARY KEY (`user_id`,`post_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户与岗位关联表';
 
 -- ----------------------------
@@ -1205,9 +1224,9 @@ INSERT INTO `sys_user_post` VALUES ('2', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role` (
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
-  PRIMARY KEY (`user_id`,`role_id`)
+                                 `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+                                 `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+                                 PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户和角色关联表';
 
 -- ----------------------------
