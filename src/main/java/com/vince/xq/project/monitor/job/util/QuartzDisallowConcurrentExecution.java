@@ -1,5 +1,6 @@
 package com.vince.xq.project.monitor.job.util;
 
+import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
 import com.vince.xq.project.monitor.job.domain.Job;
@@ -14,7 +15,7 @@ import com.vince.xq.project.monitor.job.domain.Job;
 public class QuartzDisallowConcurrentExecution extends AbstractQuartzJob
 {
     @Override
-    protected void doExecute(JobExecutionContext context, Job job) throws Exception
+    protected void doExecute(JobExecutionContext context, Jobconfig job) throws Exception
     {
         JobInvokeUtil.invokeMethod(job);
     }

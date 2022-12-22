@@ -1,6 +1,8 @@
 package com.vince.xq.project.system.jobconfig.service;
 
+import com.vince.xq.common.exception.job.TaskException;
 import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
+import org.quartz.SchedulerException;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ public interface IJobconfigService
 
     public int deleteJobconfigByIds(String ids);
 
-    public int insertJobconfig(Jobconfig dbconfig);
+    public void insertJobconfig(Jobconfig dbconfig) throws TaskException, SchedulerException;
 
     public int updateJobconfig(Jobconfig dbconfig);
 

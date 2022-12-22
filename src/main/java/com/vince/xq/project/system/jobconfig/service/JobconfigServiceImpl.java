@@ -1,16 +1,24 @@
 package com.vince.xq.project.system.jobconfig.service;
 
 import com.vince.xq.common.constant.Constants;
+import com.vince.xq.common.constant.ScheduleConstants;
+import com.vince.xq.common.exception.job.TaskException;
 import com.vince.xq.common.utils.security.ShiroUtils;
 import com.vince.xq.common.utils.text.Convert;
+import com.vince.xq.project.monitor.job.domain.Job;
+import com.vince.xq.project.monitor.job.mapper.JobMapper;
+import com.vince.xq.project.monitor.job.util.ScheduleUtils;
 import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
 import com.vince.xq.project.system.jobconfig.mapper.JobconfigMapper;
 import com.vince.xq.project.common.DbTypeEnum;
 import com.vince.xq.project.system.dbconfig.domain.Dbconfig;
 import com.vince.xq.project.system.dbconfig.mapper.DbconfigMapper;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +36,25 @@ public class JobconfigServiceImpl implements IJobconfigService {
 
     @Autowired
     private DbconfigMapper dbconfigMapper;
+
+    @Autowired
+    private JobMapper jobMapper;
+
+    @Autowired
+    private Scheduler scheduler;
+
+    @PostConstruct
+    public void init() throws SchedulerException, TaskException
+    {
+        scheduler.clear();
+        List<Jobconfig> jobList = jobconfigMapper.selectJobconfigAll();
+        for (Jobconfig job : jobList)
+        {
+            if (job.getSchduleStatus().equals("0")){
+                ScheduleUtils.createScheduleJob(scheduler, job);
+            }
+        }
+    }
 
     @Override
     public List<Jobconfig> selectJobconfigList(Jobconfig dbconfig) {
@@ -89,11 +116,13 @@ public class JobconfigServiceImpl implements IJobconfigService {
 
 
     @Override
-    public int insertJobconfig(Jobconfig dbconfig) {
-        dbconfig.setCreateBy(ShiroUtils.getLoginName());
-        return jobconfigMapper.insertJobconfig(dbconfig);
+    public void insertJobconfig(Jobconfig jobconfig) throws TaskException, SchedulerException {
+        jobconfig.setCreateBy(ShiroUtils.getLoginName());
+        int rows = jobconfigMapper.insertJobconfig(jobconfig);
+        if (rows > 0) {
+            ScheduleUtils.createScheduleJob(scheduler, jobconfig);
+        }
     }
-
 
     @Override
     public int updateJobconfig(Jobconfig dbconfig) {

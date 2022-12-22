@@ -7,6 +7,7 @@ import com.vince.xq.common.utils.ExceptionUtil;
 import com.vince.xq.common.utils.StringUtils;
 import com.vince.xq.common.utils.bean.BeanUtils;
 import com.vince.xq.common.utils.spring.SpringUtils;
+import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public abstract class AbstractQuartzJob implements org.quartz.Job
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException
     {
-        Job job = new Job();
+        Jobconfig job = new Jobconfig();
         BeanUtils.copyBeanProp(job, context.getMergedJobDataMap().get(ScheduleConstants.TASK_PROPERTIES));
         try
         {
@@ -55,9 +56,8 @@ public abstract class AbstractQuartzJob implements org.quartz.Job
      * 执行前
      *
      * @param context 工作执行上下文对象
-     * @param sysJob 系统计划任务
      */
-    protected void before(JobExecutionContext context, Job job)
+    protected void before(JobExecutionContext context, Jobconfig job)
     {
         threadLocal.set(new Date());
     }
@@ -66,17 +66,16 @@ public abstract class AbstractQuartzJob implements org.quartz.Job
      * 执行后
      *
      * @param context 工作执行上下文对象
-     * @param sysScheduleJob 系统计划任务
      */
-    protected void after(JobExecutionContext context, Job job, Exception e)
+    protected void after(JobExecutionContext context, Jobconfig job, Exception e)
     {
         Date startTime = threadLocal.get();
         threadLocal.remove();
 
         final JobLog jobLog = new JobLog();
-        jobLog.setJobName(job.getJobName());
-        jobLog.setJobGroup(job.getJobGroup());
-        jobLog.setInvokeTarget(job.getInvokeTarget());
+        jobLog.setJobName(job.getId().toString());
+        jobLog.setJobGroup("test-job");
+        //jobLog.setInvokeTarget(job.getInvokeTarget());
         jobLog.setStartTime(startTime);
         jobLog.setEndTime(new Date());
         long runMs = jobLog.getEndTime().getTime() - jobLog.getStartTime().getTime();
@@ -93,7 +92,7 @@ public abstract class AbstractQuartzJob implements org.quartz.Job
         }
 
         // 写入数据库当中
-        SpringUtils.getBean(IJobLogService.class).addJobLog(jobLog);
+        //SpringUtils.getBean(IJobLogService.class).addJobLog(jobLog);
     }
 
     /**
@@ -103,5 +102,5 @@ public abstract class AbstractQuartzJob implements org.quartz.Job
      * @param job 系统计划任务
      * @throws Exception 执行过程中的异常
      */
-    protected abstract void doExecute(JobExecutionContext context, Job job) throws Exception;
+    protected abstract void doExecute(JobExecutionContext context, Jobconfig job) throws Exception;
 }

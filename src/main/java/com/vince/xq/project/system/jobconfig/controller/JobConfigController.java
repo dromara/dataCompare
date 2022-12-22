@@ -1,7 +1,11 @@
 package com.vince.xq.project.system.jobconfig.controller;
 
+import com.vince.xq.common.constant.ScheduleConstants;
 import com.vince.xq.framework.aspectj.lang.annotation.Log;
 import com.vince.xq.framework.aspectj.lang.enums.BusinessType;
+import com.vince.xq.project.monitor.job.domain.Job;
+import com.vince.xq.project.monitor.job.util.CronUtils;
+import com.vince.xq.project.monitor.job.util.ScheduleUtils;
 import com.vince.xq.project.system.jobconfig.service.IJobconfigService;
 import com.vince.xq.framework.web.controller.BaseController;
 import com.vince.xq.framework.web.domain.AjaxResult;
@@ -10,6 +14,7 @@ import com.vince.xq.project.system.dbconfig.service.IDbconfigService;
 import com.vince.xq.project.system.instance.service.IInstanceService;
 import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.quartz.Scheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +104,13 @@ public class JobConfigController extends BaseController {
     @ResponseBody
     public AjaxResult addSave(@Validated Jobconfig jobconfig) {
         try {
-            return toAjax(jobconfigService.insertJobconfig(jobconfig));
+            if (jobconfig.getSchduleStatus().equals("0")) {//定时调度
+                if (!CronUtils.isValid(jobconfig.getSchduleTime())) {
+                    return error("新增任务失败，Cron表达式不正确");
+                }
+            }
+            jobconfigService.insertJobconfig(jobconfig);
+            return success();
         } catch (Exception e) {
             e.printStackTrace();
             return error(e.getMessage());

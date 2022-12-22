@@ -39,12 +39,12 @@ public class JobServiceImpl implements IJobService
     @PostConstruct
     public void init() throws SchedulerException, TaskException
     {
-        scheduler.clear();
+        /*scheduler.clear();
         List<Job> jobList = jobMapper.selectJobAll();
         for (Job job : jobList)
         {
             ScheduleUtils.createScheduleJob(scheduler, job);
-        }
+        }*/
     }
 
     /**
