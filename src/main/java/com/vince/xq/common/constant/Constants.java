@@ -116,4 +116,6 @@ public class Constants {
     public static final String TEST_CONNECT_SQL = "show databases";
 
     public static final String CHECK_TABLE_SQL ="select %s from %s limit 1";
+
+    public static final String EMAIL_TITLE ="dataCompare check result";
 }

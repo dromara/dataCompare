@@ -5,10 +5,13 @@ import com.vince.xq.project.common.DbTypeEnum;
 import com.vince.xq.project.common.RunUtil;
 import com.vince.xq.project.system.dbconfig.domain.Dbconfig;
 import com.vince.xq.project.system.dbconfig.mapper.DbconfigMapper;
+import com.vince.xq.project.system.email.service.IEmailService;
 import com.vince.xq.project.system.instance.domain.Instance;
 import com.vince.xq.project.system.instance.mapper.InstanceMapper;
 import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
 import com.vince.xq.project.system.jobconfig.mapper.JobconfigMapper;
+import com.vince.xq.project.system.user.domain.User;
+import com.vince.xq.project.system.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +36,12 @@ public class InstanceServiceImpl implements IInstanceService {
 
     @Autowired
     private JobconfigMapper jobconfigMapper;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private IEmailService emailService;
 
     @Override
     public List<Instance> selectInstanceList(Instance instance) {
@@ -79,6 +88,8 @@ public class InstanceServiceImpl implements IInstanceService {
             Instance instance = RunUtil.run(dbconfig, jobconfig);
             instance.setJobconfigId(id);
             instanceMapper.insertInstance(instance);
+            User user= userMapper.selectUserByLoginName(jobconfig.getCreateBy());
+            emailService.sendEmail(instance,user.getEmail());
         }
     }
 
