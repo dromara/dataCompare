@@ -44,13 +44,11 @@ public class JobconfigServiceImpl implements IJobconfigService {
     private Scheduler scheduler;
 
     @PostConstruct
-    public void init() throws SchedulerException, TaskException
-    {
+    public void init() throws SchedulerException, TaskException {
         scheduler.clear();
         List<Jobconfig> jobList = jobconfigMapper.selectJobconfigAll();
-        for (Jobconfig job : jobList)
-        {
-            if (job.getSchduleStatus().equals("0")){
+        for (Jobconfig job : jobList) {
+            if (job.getSchduleStatus().equals("0")) {
                 ScheduleUtils.createScheduleJob(scheduler, job);
             }
         }
@@ -119,7 +117,7 @@ public class JobconfigServiceImpl implements IJobconfigService {
     public void insertJobconfig(Jobconfig jobconfig) throws TaskException, SchedulerException {
         jobconfig.setCreateBy(ShiroUtils.getLoginName());
         int rows = jobconfigMapper.insertJobconfig(jobconfig);
-        if (rows > 0) {
+        if (rows > 0 && jobconfig.getSchduleStatus().equals("0")) {
             ScheduleUtils.createScheduleJob(scheduler, jobconfig);
         }
     }
