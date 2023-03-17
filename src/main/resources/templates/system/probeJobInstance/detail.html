@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('探测结果')"/>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+
+    <form class="form-horizontal m" id="form-post-edit">
+        <input id="id" name="id" type="hidden" th:field="${Instance.id}"/>
+
+        <div class="form-group">
+            <label class="col-sm-6 control-label"><h2>表配置信息</h2></label>
+        </div>
+        <br/>
+
+        <div class="form-group" style="text-align: center;">
+
+            <table id="bootstrap-table1" style="width: 60%;margin: auto;" class="table table-bordered table-hover">
+                <thead class="">
+                <tr>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">表名</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">过滤条件</div><div class="fht-cell"></div></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-index="0">
+                    <td th:text="${Instance.tableName}"></td>
+                    <td th:text="${Instance.filter}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <br/>
+
+        <div class="form-group">
+            <label class="col-sm-6 control-label"><h2>主键探测</h2></label>
+        </div>
+
+        <div class="form-group" style="text-align: center;">
+
+            <table id="bootstrap-table2" style="width: 60%;margin: auto;" class="table table-bordered table-hover">
+                <thead class="">
+                <tr>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">主键</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">总行数</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">主键去重总行数</div><div class="fht-cell"></div></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-index="0">
+                    <td th:text="${Instance.primaryResult.primaryField}"></td>
+                    <td th:text="${Instance.primaryResult.cnt}"></td>
+                    <td th:text="${Instance.primaryResult.distinctCnt}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <br/>
+
+        <div class="form-group">
+            <label class="col-sm-6 control-label"><h2>空值探测</h2></label>
+        </div>
+
+        <div class="form-group" style="text-align: center;">
+
+            <table id="bootstrap-table3" style="width: 60%;margin: auto;" class="table table-bordered table-hover">
+                <thead class="">
+                <tr>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">字段名</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">空值行数</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">总行数</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">空值占比</div><div class="fht-cell"></div></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr data-index="0" th:each="nullResult:${Instance.nullResultList}">
+                    <td th:text="${nullResult.nullField}"></td>
+                    <td th:text="${nullResult.nullCnt}"></td>
+                    <td th:text="${nullResult.totalCnt}"></td>
+                    <td th:text="${nullResult.nullCnt}/${nullResult.totalCnt}"></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <br/>
+
+        <div class="form-group">
+            <label class="col-sm-6 control-label"><h2>枚举值探测</h2></label>
+        </div>
+
+        <div class="form-group" style="text-align: center;" th:each="enumMap : ${Instance.enumResultMap}">
+            <div class="form-group has-error">
+                <label class="col-sm-2 control-label">字段名</label>
+                <div class="col-sm-3">
+                    <text th:text="${enumMap.key}"/>
+                </div>
+            </div>
+            <table style="width: 60%;margin: auto;" class="table table-bordered table-hover">
+                <thead class="">
+                <tr>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">enum_value</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">num</div><div class="fht-cell"></div></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr data-index="0" th:each="enumResult:${enumMap.value}">
+                    <td th:text="${enumResult.enumValue}"></td>
+                    <td th:text="${enumResult.cnt}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <br/>
+
+    </form>
+</div>
+<th:block th:include="include :: footer"/>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

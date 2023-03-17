@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vince.xq.project.system.ProbeJobInstance.mapper.ProbeJobInstanceMapper">
+
+    <resultMap type="ProbeJobInstance" id="ProbeJobInstanceResult">
+        <id property="id" column="id"/>
+        <result property="jobconfigId" column="job_config_id"/>
+        <result property="primaryResult" column="primary_result"/>
+        <result property="enumResult" column="enum_result"/>
+        <result property="nullResult" column="null_result"/>
+        <result property="tableName" column="table_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="filter" column="filter"/>
+
+    </resultMap>
+
+    <sql id="selectProbeJobInstanceVo">
+        select a.id,
+               a.job_config_id,
+               a.primary_result,
+               a.enum_result,
+               a.null_result,
+               a.create_time,
+               b.`table_name`,
+               b.filter
+        from probe_job_instance a
+                 join probe_job_config b on a.job_config_id = b.id
+    </sql>
+
+    <select id="selectInstanceList" parameterType="ProbeJobInstance" resultMap="ProbeJobInstanceResult">
+        select a.id,
+        a.job_config_id,
+        a.primary_result,
+        a.enum_result,
+        a.null_result,
+        a.create_time,
+        b.`table_name`
+        from probe_job_instance a join probe_job_config b on a.job_config_id=b.id
+        <where>
+            <if test="jobconfigId != null and jobconfigId != ''">
+                AND job_config_id like concat('%', #{jobconfigId}, '%')
+            </if>
+        </where>
+        order by a.create_time desc
+    </select>
+
+    <select id="selectInstanceAll" resultMap="ProbeJobInstanceResult">
+        <include refid="selectProbeJobInstanceVo"/>
+    </select>
+
+    <select id="selectInstanceById" parameterType="Long" resultMap="ProbeJobInstanceResult">
+        <include refid="selectProbeJobInstanceVo"/>
+        where a.id = #{id}
+    </select>
+
+    <delete id="deleteProbeJobInstanceByIds" parameterType="Long">
+        delete from probe_job_instance where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="insertInstance" parameterType="ProbeJobInstance" useGeneratedKeys="true" keyProperty="id">
+        insert into probe_job_instance(
+        <if test="jobconfigId != null and jobconfigId != ''">job_config_id,</if>
+        <if test="primaryResult != null and primaryResult != ''">primary_result,</if>
+        <if test="enumResult != null and enumResult != ''">enum_result,</if>
+        <if test="nullResult != null and nullResult != ''">null_result,</if>
+        create_time
+        )values(
+        <if test="jobconfigId != null and jobconfigId != ''">#{jobconfigId},</if>
+        <if test="primaryResult != null and primaryResult != ''">#{primaryResult},</if>
+        <if test="enumResult != null and enumResult != ''">#{enumResult},</if>
+        <if test="nullResult != null and nullResult != ''">#{nullResult},</if>
+        sysdate()
+        )
+    </insert>
+
+    <select id="selectInstancesByUser" parameterType="String" resultMap="ProbeJobInstanceResult">
+        SELECT id
+        FROM probe_job_instance
+        WHERE create_by = #{createBy}
+    </select>
+
+</mapper> 

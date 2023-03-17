@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vince.xq.project.system.probeJobConfig.mapper.ProbeJobconfigMapper">
+
+	<resultMap type="ProbeJobconfig" id="ProbeJobconfigResult">
+		<id     property="id"        column="id"       />
+		<result property="tableName"      column="table_name"     />
+		<result property="tablePrimary"      column="table_primary"     />
+		<result property="tableEnumFields"      column="table_enum_fields"     />
+		<result property="tableNullFields"      column="table_null_fields"     />
+		<result property="dbConfigId"        column="db_config_id"        />
+		<result property="filter"        column="filter"        />
+		<result property="createBy"      column="create_by"     />
+		<result property="createTime"    column="create_time"   />
+	</resultMap>
+	
+	<sql id="selecJobconfigVo">
+        select id, `table_name`,table_primary, table_enum_fields, table_null_fields,db_config_id,filter,
+			   create_by, create_time
+		from probe_job_config
+    </sql>
+	
+	<select id="selectJobconfigList" parameterType="Jobconfig" resultMap="ProbeJobconfigResult">
+	    <include refid="selecJobconfigVo"/>
+		<where>
+			<if test="id != null and id != ''">
+				AND id like concat('%', #{id}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectJobconfigAll" resultMap="ProbeJobconfigResult">
+		<include refid="selecJobconfigVo"/>
+	</select>
+
+	<select id="selectJobconfigById" parameterType="Long" resultMap="ProbeJobconfigResult">
+		<include refid="selecJobconfigVo"/>
+		where id = #{id}
+	</select>
+
+ 	<delete id="deleteJobconfigByIds" parameterType="Long">
+ 		delete from probe_job_config where id in
+ 		<foreach collection="array" item="id" open="(" separator="," close=")">
+ 			#{id}
+        </foreach> 
+ 	</delete>
+ 	
+ 	<insert id="insertJobconfig" parameterType="ProbeJobconfig" useGeneratedKeys="true" keyProperty="id">
+ 		insert into probe_job_config(
+ 			<if test="tableName != null and tableName != ''">`table_name`,</if>
+ 			<if test="tablePrimary != null and tablePrimary != ''">table_primary,</if>
+			<if test="tableEnumFields != null and tableEnumFields != ''">table_enum_fields,</if>
+ 			<if test="tableNullFields != null and tableNullFields != ''">table_null_fields,</if>
+
+			<if test="dbConfigId != null and dbConfigId != ''">db_config_id,</if>
+			<if test="filter != null and filter != ''">filter,</if>
+			<if test="createBy != null and createBy != ''">create_by,</if>
+ 			create_time
+ 		)values(
+ 			<if test="tableName != null and tableName != ''">#{tableName},</if>
+			<if test="tablePrimary != null and tablePrimary != ''">#{tablePrimary},</if>
+ 			<if test="tableEnumFields != null and tableEnumFields != ''">#{tableEnumFields},</if>
+ 			<if test="tableNullFields != null and tableNullFields != ''">#{tableNullFields},</if>
+			<if test="dbConfigId != null and dbConfigId != ''">#{dbConfigId},</if>
+			<if test="filter != null and filter != ''">#{filter},</if>
+			<if test="createBy != null and createBy != ''">#{createBy},</if>
+ 			sysdate()
+ 		)
+	</insert>
+
+	<select id="selectJobconfigsByUser" parameterType="String" resultMap="ProbeJobconfigResult">
+		SELECT id
+		FROM probe_job_config
+		WHERE create_by= #{createBy}
+	</select>
+
+</mapper> 

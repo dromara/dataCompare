@@ -21,7 +21,7 @@ public class RyTask {
     }
 
     public void ryParams(String params) throws Exception {
-        System.out.println("执行有参方法：" + params);
+        //System.out.println("执行有参方法：" + params);
         instanceService.runJob(params);
     }
 

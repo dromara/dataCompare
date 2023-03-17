@@ -1,9 +1,13 @@
 package com.vince.xq.project.common;
 
+import com.alibaba.fastjson.JSONObject;
+import com.vince.xq.project.system.ProbeJobInstance.domain.ProbeJobInstance;
 import com.vince.xq.project.system.instance.controller.InstanceController;
 import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
 import com.vince.xq.project.system.dbconfig.domain.Dbconfig;
 import com.vince.xq.project.system.instance.domain.Instance;
+import com.vince.xq.project.system.probeJobConfig.domain.Probejobconfig;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -140,9 +144,9 @@ public class RunUtil {
         String compareNumSql = String.format(PV_UV_SQL, jobconfig.getOriginTablePrimary(), jobconfig.getOriginTableName(), Optional.ofNullable(jobconfig.getOriginTableFilter()).orElse("")
                 , jobconfig.getToTablePrimary(), jobconfig.getToTableName(), Optional.ofNullable(jobconfig.getToTableFilter()).orElse(""));
 
-        log.info("====compareNumSql====");
+        /*log.info("====compareNumSql====");
         log.info(compareNumSql);
-        log.info("====compareNumSql====");
+        log.info("====compareNumSql====");*/
 
         String[] fileds = jobconfig.getOriginTableFields().split(",");
         List<String> originColumns = new ArrayList<>();
@@ -172,9 +176,9 @@ public class RunUtil {
                 jobconfig.getToTableName(),
                 Optional.ofNullable(jobconfig.getToTableFilter()).orElse(""));
 
-        log.info("====consistencyNumSql====");
+        /*log.info("====consistencyNumSql====");
         log.info(consistencyNumSql);
-        log.info("====consistencyNumSql====");
+        log.info("====consistencyNumSql====");*/
 
         Instance instance = runNum(dbconfig, dbTypeEnum.getConnectDriver(), compareNumSql, consistencyNumSql);
         instance.setMagnitudeSql(compareNumSql);
@@ -199,9 +203,9 @@ public class RunUtil {
                 .replaceAll("fields_list_check_filter", String.join(" or ", fields_list_filter))
                 .replaceAll("fields_list_check", String.join(",", fields_list));
 
-        log.info("====check_sql====");
+        /*log.info("====check_sql====");
         log.info(check_sql);
-        log.info("====check_sql====");
+        log.info("====check_sql====");*/
 
         DbTypeEnum dbTypeEnum = DbTypeEnum.findEnumByType(dbconfig.getType());
         try {
@@ -273,5 +277,130 @@ public class RunUtil {
             throw new Exception("连接数据库失败");
         }
         return instance;
+    }
+
+    public static final String mainTemplateSql = "select count(distinct column) as distinct_cnt," +
+            "count(*) as cnt" +
+            " from tableName filter";
+
+    public static final String emptyTemplateSql = "select count(*) as cnt,column_dict as dict from (\n" +
+            "select *,\n" +
+            "case when column is null then 0\n" +
+            "else 1\n" +
+            "end as column_dict\n" +
+            "from tableName\n" +
+            "filter\n" +
+            ")t group by column_dict;";
+
+    public static final String enumTemplateSql = "select cnt,dict from (\n" +
+            "select count(*) as cnt,column as dict\n" +
+            "from tableName\n" +
+            "filter\n" +
+            "group by column\n" +
+            ")t order by cnt desc limit 20;";
+
+    public static ProbeJobInstance runProbeJob(Dbconfig dbconfig, Probejobconfig probejobconfig) throws Exception {
+        DbTypeEnum dbTypeEnum = DbTypeEnum.findEnumByType(dbconfig.getType());
+        String filter = probejobconfig.getFilter();
+        String mainSql = "";
+        ProbeJobInstance instance = new ProbeJobInstance();
+        if (StringUtils.isNotBlank(probejobconfig.getTablePrimary())) {
+            String primaryField = probejobconfig.getTablePrimary();
+            mainSql = mainTemplateSql.replaceAll("column", primaryField).replace("tableName", probejobconfig.getTableName()).replace("filter", Optional.ofNullable(filter).orElse(""));
+            Map<String, String> primaryResult = runProbJobPrimaryKey(dbconfig, dbTypeEnum.getConnectDriver(), mainSql);
+            if (primaryResult != null) {
+                Map<String, Map<String, String>> mainResult = new HashMap<>();
+                mainResult.put(probejobconfig.getTablePrimary(), primaryResult);
+                instance.setPrimaryResult(JSONObject.toJSONString(mainResult));
+            }
+        }
+        if (StringUtils.isNotBlank(probejobconfig.getTableNullFields())) {
+            String[] emptyFieldArr = probejobconfig.getTableNullFields().split(",");
+            Map<String, List<LinkedHashMap<String, String>>> emptyResult = new HashMap<>();
+            for (String emptyField : emptyFieldArr) {
+                String sql = emptyTemplateSql.replaceAll("column", emptyField).replace("tableName", probejobconfig.getTableName()).replace("filter", Optional.ofNullable(filter).orElse(""));
+                List<LinkedHashMap<String, String>> emptyList = runProbJobField(dbconfig, dbTypeEnum.getConnectDriver(), sql);
+                emptyResult.put(emptyField, emptyList);
+            }
+            instance.setNullResult(JSONObject.toJSONString(emptyResult));
+        }
+        if (StringUtils.isNotBlank(probejobconfig.getTableEnumFields())) {
+            String[] enumFieldArr = probejobconfig.getTableEnumFields().split(",");
+            Map<String, List<LinkedHashMap<String, String>>> enumResult = new HashMap<>();
+            for (String enumField : enumFieldArr) {
+                String sql = enumTemplateSql.replaceAll("column", enumField).replace("tableName", probejobconfig.getTableName()).replace("filter", Optional.ofNullable(filter).orElse(""));
+                List<LinkedHashMap<String, String>> enumList = runProbJobField(dbconfig, dbTypeEnum.getConnectDriver(), sql);
+                enumResult.put(enumField, enumList);
+            }
+            instance.setEnumResult(JSONObject.toJSONString(enumResult));
+        }
+        return instance;
+    }
+
+    private static Map<String, String> runProbJobPrimaryKey(Dbconfig dbconfig, String connectDriver, String sql) throws Exception {
+        try {
+            Class.forName(connectDriver);
+        } catch (ClassNotFoundException e) {
+            throw new Exception("注册驱动失败");
+        }
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
+            Statement stat = conn.createStatement();
+            if (StringUtils.isNotBlank(sql)) {
+                log.info("=====sql:{}=======", sql);
+                ResultSet re = stat.executeQuery(sql);
+                Map<String, String> hashMap = new HashMap<>();
+                while (re.next()) {
+                    hashMap.put("distinct_cnt", re.getString(1));
+                    hashMap.put("cnt", re.getString(2));
+                }
+                re.close();
+                return hashMap;
+            }
+            stat.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("连接数据库失败");
+        }
+        return null;
+    }
+
+    private static List<LinkedHashMap<String, String>> runProbJobField(Dbconfig dbconfig, String connectDriver, String sql) throws Exception {
+        try {
+            Class.forName(connectDriver);
+        } catch (ClassNotFoundException e) {
+            throw new Exception("注册驱动失败");
+        }
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
+            Statement stat = conn.createStatement();
+            if (StringUtils.isNotBlank(sql)) {
+                log.info("=====sql:{}=======", sql);
+                ResultSet re = stat.executeQuery(sql);
+                ResultSetMetaData metaData = re.getMetaData();  //获取列集
+                int columnCount = metaData.getColumnCount(); //获取列的数量
+                List<LinkedHashMap<String, String>> list = new ArrayList<>();
+                while (re.next()) {
+                    LinkedHashMap<String, String> hashMap = new LinkedHashMap();
+                    for (int i = 0; i < columnCount; i++) { //循环列
+                        String columnName = metaData.getColumnName(i + 1); //通过序号获取列名,起始值为1
+                        String columnValue = re.getString(columnName);  //通过列名获取值.如果列值为空,columnValue为null,不是字符型
+                        hashMap.put(columnName, columnValue);
+                    }
+                    list.add(hashMap);
+                }
+                re.close();
+                return list;
+            }
+            stat.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("连接数据库失败");
+        }
+        return null;
     }
 }
