@@ -18,12 +18,22 @@ dataCompare is a database comparison platform: support Hive table data compariso
 ![image](https://user-images.githubusercontent.com/28300167/207563534-e4df0c95-846b-4cf3-be68-37b91bd05f0b.png)
 
 #### Features
-(1)Low-code configuration can realize the comparison of data tables without cumbersome sql development
 
-(2)The following functions are currently supported: magnitude comparison, consistency comparison, difference case discovery, MySQL、Hive and Doris haved already supported
+data-compare
 
-(3)Subsequent plan support: unfamiliar table pointer detection, including: enumeration value detection, range value detection, primary key id hash detection
+(1)Interface-level interactive data comparison task configuration, low code and small amount of configuration to quickly generate comparison tasks
 
+(2)Magnitude comparison, consistency comparison, automatic difference case discovery
+
+(3)JDBC databases such as MySQL, Apache Hive, and Apache Doris are currently supported
+
+(4)Already supports the comparison results to automatically send email alarm reports
+
+data-profiling
+
+(1)Data detection can be completed with low code and a small amount of configuration
+
+(2)Primary key, enumeration value, null value detection
 
 #### Software Architecture
 
@@ -57,6 +67,8 @@ Big Data：Hive、Spark
 Home
 ![image](https://user-images.githubusercontent.com/28300167/207257662-273fc531-c21e-437a-9d20-f15a533b58bd.png)
 
+data-compare:
+
 DbConfig
 
 mysql config
@@ -78,6 +90,17 @@ Comparison results are displayed
 
 ![3fd83de9c582347f7f88cc82f438db4](https://user-images.githubusercontent.com/28300167/208607767-94cffce0-30f3-45ec-a280-978964e153bb.png)
 
+data-profiling:
+
+job config
+
+![img_2.png](img_2.png)
+
+profiling result
+
+![img_3.png](img_3.png)
+
+![img_4.png](img_4.png)
 
 #### The system running environment
 
