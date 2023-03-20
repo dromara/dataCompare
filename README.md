@@ -13,7 +13,11 @@
 
 
 #### Introduction
-dataCompare is a database comparison platform: support Hive table data comparison, MySQL、Doris data comparison, realize automatic configuration for data comparison, avoid frequent SQL writing for processing, and consider supporting CK and so on
+dataCompare is a database comparison and profiling platform
+
+(1)support Hive table data comparison, MySQL、Doris data comparison, realize automatic configuration for data comparison, avoid frequent SQL writing for processing
+
+(2)support easy configuration for data profiling
 
 ![image](https://user-images.githubusercontent.com/28300167/207563534-e4df0c95-846b-4cf3-be68-37b91bd05f0b.png)
 
