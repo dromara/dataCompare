@@ -19,6 +19,8 @@ dataCompare 是一个大数据数据比对和数据探测平台
 
 ![image](https://user-images.githubusercontent.com/28300167/207563954-6e3dba02-84de-4881-9a23-371b88ed5b1e.png)
 
+![image](https://user-images.githubusercontent.com/28300167/226346775-f1c1ed2d-8370-45db-878c-8ab81d9e402e.png)
+
 #### 功能介绍
 
 数据对比：
