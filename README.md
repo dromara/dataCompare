@@ -21,6 +21,9 @@ dataCompare is a database comparison and profiling platform
 
 ![image](https://user-images.githubusercontent.com/28300167/207563534-e4df0c95-846b-4cf3-be68-37b91bd05f0b.png)
 
+![image](https://user-images.githubusercontent.com/28300167/226346775-f1c1ed2d-8370-45db-878c-8ab81d9e402e.png)
+
+
 #### Features
 
 data-compare
