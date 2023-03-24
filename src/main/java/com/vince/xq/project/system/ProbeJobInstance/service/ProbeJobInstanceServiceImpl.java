@@ -84,6 +84,8 @@ public class ProbeJobInstanceServiceImpl implements IProbeJobInstanceService {
             nullResult.setNullField(key);
             JSONArray jsonArray = JSONObject.parseArray(nullResultObj.getString(key));
             long totalCnt = 0;
+            //空值详情展示错误问题
+            //nullResult.setNullCnt(0L);
             for (int i = 0; i < jsonArray.size(); i++) {
                 JSONObject jsonObject = JSONObject.parseObject(jsonArray.get(i).toString());
                 if (jsonObject.getString("dict").equals("0")) {
