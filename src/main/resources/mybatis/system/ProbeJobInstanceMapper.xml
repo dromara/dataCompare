@@ -10,6 +10,7 @@
         <result property="primaryResult" column="primary_result"/>
         <result property="enumResult" column="enum_result"/>
         <result property="nullResult" column="null_result"/>
+        <result property="lenResult" column="len_result"/>
         <result property="tableName" column="table_name"/>
         <result property="createTime" column="create_time"/>
         <result property="filter" column="filter"/>
@@ -22,6 +23,7 @@
                a.primary_result,
                a.enum_result,
                a.null_result,
+               a.len_result,
                a.create_time,
                b.`table_name`,
                b.filter
@@ -35,6 +37,7 @@
         a.primary_result,
         a.enum_result,
         a.null_result,
+        a.len_result,
         a.create_time,
         b.`table_name`
         from probe_job_instance a join probe_job_config b on a.job_config_id=b.id
@@ -68,12 +71,14 @@
         <if test="primaryResult != null and primaryResult != ''">primary_result,</if>
         <if test="enumResult != null and enumResult != ''">enum_result,</if>
         <if test="nullResult != null and nullResult != ''">null_result,</if>
+        <if test="lenResult != null and lenResult != ''">len_result,</if>
         create_time
         )values(
         <if test="jobconfigId != null and jobconfigId != ''">#{jobconfigId},</if>
         <if test="primaryResult != null and primaryResult != ''">#{primaryResult},</if>
         <if test="enumResult != null and enumResult != ''">#{enumResult},</if>
         <if test="nullResult != null and nullResult != ''">#{nullResult},</if>
+        <if test="lenResult != null and lenResult != ''">#{lenResult},</if>
         sysdate()
         )
     </insert>

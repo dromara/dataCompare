@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="tablePrimary"      column="table_primary"     />
 		<result property="tableEnumFields"      column="table_enum_fields"     />
 		<result property="tableNullFields"      column="table_null_fields"     />
+		<result property="tableLengthFields"      column="table_length_fields"     />
 		<result property="dbConfigId"        column="db_config_id"        />
 		<result property="filter"        column="filter"        />
 		<result property="createBy"      column="create_by"     />
@@ -17,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<sql id="selecJobconfigVo">
-        select id, `table_name`,table_primary, table_enum_fields, table_null_fields,db_config_id,filter,
+        select id, `table_name`,table_primary, table_enum_fields, table_null_fields,table_length_fields,db_config_id,filter,
 			   create_by, create_time
 		from probe_job_config
     </sql>
@@ -53,6 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="tablePrimary != null and tablePrimary != ''">table_primary,</if>
 			<if test="tableEnumFields != null and tableEnumFields != ''">table_enum_fields,</if>
  			<if test="tableNullFields != null and tableNullFields != ''">table_null_fields,</if>
+			<if test="tableLengthFields != null and tableLengthFields != ''">table_length_fields,</if>
 
 			<if test="dbConfigId != null and dbConfigId != ''">db_config_id,</if>
 			<if test="filter != null and filter != ''">filter,</if>
@@ -63,6 +65,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="tablePrimary != null and tablePrimary != ''">#{tablePrimary},</if>
  			<if test="tableEnumFields != null and tableEnumFields != ''">#{tableEnumFields},</if>
  			<if test="tableNullFields != null and tableNullFields != ''">#{tableNullFields},</if>
+			<if test="tableLengthFields != null and tableLengthFields != ''">#{tableNullFields},</if>
+
 			<if test="dbConfigId != null and dbConfigId != ''">#{dbConfigId},</if>
 			<if test="filter != null and filter != ''">#{filter},</if>
 			<if test="createBy != null and createBy != ''">#{createBy},</if>

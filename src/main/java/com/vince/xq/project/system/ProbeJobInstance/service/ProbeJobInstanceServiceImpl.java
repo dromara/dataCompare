@@ -17,6 +17,7 @@ import com.vince.xq.project.system.probeJobConfig.domain.Probejobconfig;
 import com.vince.xq.project.system.probeJobConfig.mapper.ProbeJobconfigMapper;
 import com.vince.xq.project.system.user.domain.User;
 import com.vince.xq.project.system.user.mapper.UserMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,50 +68,76 @@ public class ProbeJobInstanceServiceImpl implements IProbeJobInstanceService {
         probeJobInstanceResult.setTableName(instance.getTableName());
         probeJobInstanceResult.setFilter(instance.getFilter());
 
-        JSONObject primaryResultObj = JSONObject.parseObject(instance.getPrimaryResult());
-        for (String key : primaryResultObj.keySet()) {
-            ProbeJobInstanceResult.PrimaryResult primaryResult = new ProbeJobInstanceResult.PrimaryResult();
-            primaryResult.setPrimaryField(key);
-            JSONObject jsonObject = JSONObject.parseObject(primaryResultObj.getString(key));
-            primaryResult.setCnt(jsonObject.getLong("cnt"));
-            primaryResult.setDistinctCnt(jsonObject.getLong("distinct_cnt"));
-            probeJobInstanceResult.setPrimaryResult(primaryResult);
+        if (StringUtils.isNotEmpty(instance.getPrimaryResult())){
+            JSONObject primaryResultObj = JSONObject.parseObject(instance.getPrimaryResult());
+            for (String key : primaryResultObj.keySet()) {
+                ProbeJobInstanceResult.PrimaryResult primaryResult = new ProbeJobInstanceResult.PrimaryResult();
+                primaryResult.setPrimaryField(key);
+                JSONObject jsonObject = JSONObject.parseObject(primaryResultObj.getString(key));
+                primaryResult.setCnt(jsonObject.getLong("cnt"));
+                primaryResult.setDistinctCnt(jsonObject.getLong("distinct_cnt"));
+                probeJobInstanceResult.setPrimaryResult(primaryResult);
+            }
         }
 
-        JSONObject nullResultObj = JSONObject.parseObject(instance.getNullResult());
-        List<ProbeJobInstanceResult.NullResult> nullResultList = new ArrayList<>();
-        for (String key : nullResultObj.keySet()) {
-            ProbeJobInstanceResult.NullResult nullResult = new ProbeJobInstanceResult.NullResult();
-            nullResult.setNullField(key);
-            JSONArray jsonArray = JSONObject.parseArray(nullResultObj.getString(key));
-            long totalCnt = 0;
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject jsonObject = JSONObject.parseObject(jsonArray.get(i).toString());
-                if (jsonObject.getString("dict").equals("0")) {
-                    nullResult.setNullCnt(jsonObject.getLong("cnt"));
+        if (StringUtils.isNotEmpty(instance.getNullResult())){
+            JSONObject nullResultObj = JSONObject.parseObject(instance.getNullResult());
+            List<ProbeJobInstanceResult.NullResult> nullResultList = new ArrayList<>();
+            for (String key : nullResultObj.keySet()) {
+                ProbeJobInstanceResult.NullResult nullResult = new ProbeJobInstanceResult.NullResult();
+                nullResult.setNullField(key);
+                JSONArray jsonArray = JSONObject.parseArray(nullResultObj.getString(key));
+                long totalCnt = 0;
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject jsonObject = JSONObject.parseObject(jsonArray.get(i).toString());
+                    if (jsonObject.getString("dict").equals("0")) {
+                        nullResult.setNullCnt(jsonObject.getLong("cnt"));
+                    }
+                    totalCnt += jsonObject.getLong("cnt");
                 }
-                totalCnt += jsonObject.getLong("cnt");
+                nullResult.setTotalCnt(totalCnt);
+                nullResultList.add(nullResult);
             }
-            nullResult.setTotalCnt(totalCnt);
-            nullResultList.add(nullResult);
+            probeJobInstanceResult.setNullResultList(nullResultList);
         }
-        probeJobInstanceResult.setNullResultList(nullResultList);
 
-        JSONObject enumObj = JSONObject.parseObject(instance.getEnumResult());
-        Map<String, List<ProbeJobInstanceResult.EnumResult>> enumResultMap = new HashMap<>();
-        for (String key : enumObj.keySet()) {
-            JSONArray jsonArray = JSONObject.parseArray(enumObj.getString(key));
-            List<ProbeJobInstanceResult.EnumResult> list = new ArrayList<>();
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject jsonObject = JSONObject.parseObject(jsonArray.get(i).toString());
-                ProbeJobInstanceResult.EnumResult enumResult = new ProbeJobInstanceResult.EnumResult();
-                enumResult.setEnumValue(jsonObject.getString("dict"));
-                enumResult.setCnt(jsonObject.getLong("cnt"));
-                list.add(enumResult);
+
+        if (StringUtils.isNotEmpty(instance.getEnumResult())){
+            JSONObject enumObj = JSONObject.parseObject(instance.getEnumResult());
+            Map<String, List<ProbeJobInstanceResult.EnumResult>> enumResultMap = new HashMap<>();
+            for (String key : enumObj.keySet()) {
+                JSONArray jsonArray = JSONObject.parseArray(enumObj.getString(key));
+                List<ProbeJobInstanceResult.EnumResult> list = new ArrayList<>();
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject jsonObject = JSONObject.parseObject(jsonArray.get(i).toString());
+                    ProbeJobInstanceResult.EnumResult enumResult = new ProbeJobInstanceResult.EnumResult();
+                    enumResult.setEnumValue(jsonObject.getString("dict"));
+                    enumResult.setCnt(jsonObject.getLong("cnt"));
+                    list.add(enumResult);
+                }
+                enumResultMap.put(key, list);
             }
-            enumResultMap.put(key, list);
+            probeJobInstanceResult.setEnumResultMap(enumResultMap);
         }
-        probeJobInstanceResult.setEnumResultMap(enumResultMap);
+
+        if (StringUtils.isNotEmpty(instance.getLenResult())) {
+            JSONObject lenObj = JSONObject.parseObject(instance.getLenResult());
+            Map<String, List<ProbeJobInstanceResult.EnumResult>> lenResultMap = new HashMap<>();
+            for (String key : lenObj.keySet()) {
+                JSONArray jsonArray = JSONObject.parseArray(lenObj.getString(key));
+                List<ProbeJobInstanceResult.EnumResult> list = new ArrayList<>();
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject jsonObject = JSONObject.parseObject(jsonArray.get(i).toString());
+                    ProbeJobInstanceResult.EnumResult enumResult = new ProbeJobInstanceResult.EnumResult();
+                    enumResult.setEnumValue(jsonObject.getString("len"));
+                    enumResult.setCnt(jsonObject.getLong("cnt"));
+                    list.add(enumResult);
+                }
+                lenResultMap.put(key, list);
+            }
+            probeJobInstanceResult.setLenResultMap(lenResultMap);
+        }
+
         return probeJobInstanceResult;
     }
 

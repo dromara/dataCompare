@@ -25,11 +25,22 @@ public class ProbeJobInstanceResult implements Serializable
     @Excel(name = "enumResultMap")
     private Map<String,List<EnumResult>> enumResultMap;
 
+    @Excel(name = "lenResultMap")
+    private Map<String,List<EnumResult>> lenResultMap;
+
     @Excel(name = "nullResultList")
     private List<NullResult> nullResultList;
 
     @Excel(name = "filter")
     private String filter;
+
+    public Map<String, List<EnumResult>> getLenResultMap() {
+        return lenResultMap;
+    }
+
+    public void setLenResultMap(Map<String, List<EnumResult>> lenResultMap) {
+        this.lenResultMap = lenResultMap;
+    }
 
     public Long getId() {
         return id;

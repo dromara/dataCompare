@@ -299,6 +299,10 @@ public class RunUtil {
             "group by column\n" +
             ")t order by cnt desc limit 20;";
 
+    public static final String lengthTemplateSql = "select len,count(*) as cnt from (\n" +
+            "select *,length(column) as len from tableName filter\n" +
+            ")t group by len;";
+
     public static ProbeJobInstance runProbeJob(Dbconfig dbconfig, Probejobconfig probejobconfig) throws Exception {
         DbTypeEnum dbTypeEnum = DbTypeEnum.findEnumByType(dbconfig.getType());
         String filter = probejobconfig.getFilter();
@@ -333,6 +337,16 @@ public class RunUtil {
                 enumResult.put(enumField, enumList);
             }
             instance.setEnumResult(JSONObject.toJSONString(enumResult));
+        }
+        if (StringUtils.isNotBlank(probejobconfig.getTableLengthFields())) {
+            String[] lenFieldArr = probejobconfig.getTableLengthFields().split(",");
+            Map<String, List<LinkedHashMap<String, String>>> lengthResult = new HashMap<>();
+            for (String lenField : lenFieldArr) {
+                String sql = lengthTemplateSql.replaceAll("column", lenField).replace("tableName", probejobconfig.getTableName()).replace("filter", Optional.ofNullable(filter).orElse(""));
+                List<LinkedHashMap<String, String>> lenList = runProbJobField(dbconfig, dbTypeEnum.getConnectDriver(), sql);
+                lengthResult.put(lenField, lenList);
+            }
+            instance.setLenResult(JSONObject.toJSONString(lengthResult));
         }
         return instance;
     }

@@ -34,6 +34,9 @@ public class ProbeJobInstance implements Serializable
     @Excel(name = "nullResult")
     private String nullResult;
 
+    @Excel(name = "lenResult")
+    private String lenResult;
+
     @Excel(name = "filter")
     private String filter;
 
@@ -48,6 +51,14 @@ public class ProbeJobInstance implements Serializable
     /** 创建时间 */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
+    public String getLenResult() {
+        return lenResult;
+    }
+
+    public void setLenResult(String lenResult) {
+        this.lenResult = lenResult;
+    }
 
     public Long getId() {
         return id;
