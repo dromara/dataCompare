@@ -142,8 +142,9 @@ CREATE TABLE `probe_job_config` (
                                     `id` int(11) NOT NULL AUTO_INCREMENT,
                                     `table_name` varchar(255) NOT NULL,
                                     `table_primary` varchar(255) DEFAULT NULL,
-                                    `table_enum_fields` varchar(255) NOT NULL COMMENT 'table_enum_fields',
-                                    `table_null_fields` varchar(255) NOT NULL COMMENT 'table_null_fields',
+                                    `table_enum_fields` varchar(255) DEFAULT NULL COMMENT 'table_enum_fields',
+                                    `table_null_fields` varchar(255) DEFAULT NULL COMMENT 'table_null_fields',
+                                    `table_length_fields` varchar(255) DEFAULT NULL COMMENT 'table_length_fields',
                                     `filter` varchar(255) DEFAULT NULL COMMENT 'filter',
                                     `db_config_id` int(11) DEFAULT NULL,
                                     `create_time` datetime DEFAULT NULL,
@@ -161,6 +162,7 @@ CREATE TABLE `probe_job_instance` (
                                       `primary_result` text COMMENT 'primary_result',
                                       `enum_result` text COMMENT 'enum_result',
                                       `null_result` text COMMENT 'null_result',
+                                      `len_result` text COMMENT 'len_result',
                                       `create_time` datetime DEFAULT NULL,
                                       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='probe_job_instance';
