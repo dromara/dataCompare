@@ -31,6 +31,9 @@ public class Probejobconfig implements Serializable
     @Excel(name = "tableNullFields")
     private String tableNullFields;
 
+    @Excel(name = "tableLengthFields")
+    private String tableLengthFields;
+
     /** createBy */
     @Excel(name = "createBy")
     private String createBy;
@@ -44,6 +47,14 @@ public class Probejobconfig implements Serializable
 
     @Excel(name = "dbConfigId")
     private Long dbConfigId;
+
+    public String getTableLengthFields() {
+        return tableLengthFields;
+    }
+
+    public void setTableLengthFields(String tableLengthFields) {
+        this.tableLengthFields = tableLengthFields;
+    }
 
     public Long getId() {
         return id;

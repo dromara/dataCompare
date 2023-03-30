@@ -129,6 +129,38 @@
 
         <br/>
 
+        <div class="form-group">
+            <label class="col-sm-6 control-label"><h2>字段长度探测</h2></label>
+        </div>
+
+        <div class="form-group" style="text-align: center;" th:each="lenMap : ${Instance.lenResultMap}">
+            <div class="form-group has-error">
+                <label class="col-sm-2 control-label">字段名</label>
+                <div class="col-sm-3">
+                    <text th:text="${lenMap.key}"/>
+                </div>
+            </div>
+            <table style="width: 60%;margin: auto;" class="table table-bordered table-hover">
+                <thead class="">
+                <tr>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">lenth_value</div><div class="fht-cell"></div></th>
+                    <th style="text-align:center" data-field="userId"><div class="th-inner ">num</div><div class="fht-cell"></div></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr data-index="0" th:each="lenResult:${lenMap.value}">
+                    <td th:text="${lenResult.enumValue}"></td>
+                    <td th:text="${lenResult.cnt}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <br/>
+
     </form>
 </div>
 <th:block th:include="include :: footer"/>
