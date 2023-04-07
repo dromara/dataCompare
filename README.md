@@ -121,7 +121,7 @@ Runing config
 
 (1)Run the SQL files in the SQL directory in the database, create database and tables
 
-(2)download the release jar(https://github.com/zhugezifang/dataCompare/releases) or build jar using the source code of the project
+(2)build jar using the source code of the project: mvn clean package -Dmaven.test.skip=true -Ptest
 
 (3)edit database config information of application.yml
 

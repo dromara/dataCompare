@@ -117,7 +117,7 @@ mysql 5.7.36
 
 (1)将sql目录中的sql文件进行运行在数据库，创建库和表
 
-(2)下载发布好的jar(https://github.com/zhugezifang/dataCompare/releases) 或者自己构建jar
+(2)在根目录下面进行mvn clean package -Dmaven.test.skip=true -Ptest,使用target 目录下的dataCompare.jar
 
 (3)修改数据库配置信息 application.yml，将数据库连接信息改为步骤(1)的数据库连接信息
 ![47d1145d147214348d6d0f2fc599ea7](https://user-images.githubusercontent.com/28300167/219598181-5731e845-a49e-43af-a96c-db6d6148b11a.png)
