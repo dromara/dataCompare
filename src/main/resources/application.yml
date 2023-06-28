@@ -76,7 +76,7 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://ip:3306/dataCompare?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://127.0.0.1:3306/dataCompare?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
         password: 123456
       # 从库数据源
@@ -216,3 +216,14 @@ gen:
   autoRemovePre: true
   # 表前缀（生成类名不会包含表前缀，多个用逗号分隔）
   tablePrefix: sys_
+
+# sqoop shell文件在hdfs路径
+# hdfs:8020端口所在地址
+hdfs:
+  sqoop:
+    file: /user/hive/ods_shell/ods_test/test.sh
+  url: hdfs://test-namenode-server:8020
+
+
+
+
