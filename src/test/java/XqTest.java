@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.*;
 
+
 public class XqTest {
+
+    /**
     @Test
     public void testSql() throws Exception {
         Dbconfig dbconfig = new Dbconfig();
@@ -62,4 +65,5 @@ public class XqTest {
             throw new Exception("连接数据库失败");
         }
     }
+    /**
 }
