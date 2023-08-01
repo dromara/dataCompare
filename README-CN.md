@@ -106,6 +106,15 @@ job配置
 
 ![image](https://user-images.githubusercontent.com/28300167/229501053-4e33b6fb-851a-4fb2-9b19-16308359f57e.png)
 
+(3)数据接入
+
+ods表管理：通过解析shell文件中的库表,进行抽数表的管理
+
+配置项1：shell文件所在路径
+
+配置项2：hdfs namenode所在节点url
+![img_5.png](img_5.png)
+![image-20230628143018827](https://image-1312585102.cos.ap-nanjing.myqcloud.com/typora/image-20230628143018827.png)
 #### 系统运行
 系统运行环境要求：
 
