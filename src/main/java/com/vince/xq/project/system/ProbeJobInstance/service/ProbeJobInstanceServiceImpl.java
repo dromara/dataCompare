@@ -80,6 +80,7 @@ public class ProbeJobInstanceServiceImpl implements IProbeJobInstanceService {
             }
         }
 
+
         if (StringUtils.isNotEmpty(instance.getNullResult())){
             JSONObject nullResultObj = JSONObject.parseObject(instance.getNullResult());
             List<ProbeJobInstanceResult.NullResult> nullResultList = new ArrayList<>();
