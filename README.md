@@ -135,10 +135,6 @@ Environment installation configuration
 
 (2)After installation, when creating a new data source connection, select Hive at the address jdbc:hive2://ip:10000
 
-
-#### Technological Communication
-![image](https://user-images.githubusercontent.com/28300167/207255900-152d6834-9602-4ada-91ca-ad9906d89bf8.png)
-
 #### Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=zhugezifang/dataCompare&type=Date)](https://star-history.com/#zhugezifang/dataCompare&Date)
 
