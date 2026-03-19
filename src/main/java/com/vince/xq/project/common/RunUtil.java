@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.vince.xq.project.system.ProbeJobInstance.domain.ProbeJobInstance;
 import com.vince.xq.project.system.instance.controller.InstanceController;
 import com.vince.xq.project.system.jobconfig.domain.Jobconfig;
+import com.vince.xq.common.utils.security.JdbcSecurityUtil;
 import com.vince.xq.project.system.dbconfig.domain.Dbconfig;
 import com.vince.xq.project.system.instance.domain.Instance;
 import com.vince.xq.project.system.probeJobConfig.domain.Probejobconfig;
@@ -214,6 +215,7 @@ public class RunUtil {
             throw new Exception("注册驱动失败");
         }
         Connection conn = null;
+        JdbcSecurityUtil.validate(dbconfig.getUrl());
         try {
             conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
             Statement stat = conn.createStatement();
@@ -250,6 +252,7 @@ public class RunUtil {
             throw new Exception("注册驱动失败");
         }
         Connection conn = null;
+        JdbcSecurityUtil.validate(dbconfig.getUrl());
         try {
             conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
             Statement stat = conn.createStatement();
@@ -358,6 +361,7 @@ public class RunUtil {
             throw new Exception("注册驱动失败");
         }
         Connection conn = null;
+        JdbcSecurityUtil.validate(dbconfig.getUrl());
         try {
             conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
             Statement stat = conn.createStatement();
@@ -388,6 +392,7 @@ public class RunUtil {
             throw new Exception("注册驱动失败");
         }
         Connection conn = null;
+        JdbcSecurityUtil.validate(dbconfig.getUrl());
         try {
             conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
             Statement stat = conn.createStatement();

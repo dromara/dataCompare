@@ -9,6 +9,7 @@ import com.vince.xq.framework.web.domain.AjaxResult;
 import com.vince.xq.framework.web.page.TableDataInfo;
 import com.vince.xq.project.system.dbconfig.domain.Dbconfig;
 import com.vince.xq.project.system.dbconfig.service.IDbconfigService;
+import com.vince.xq.common.utils.security.JdbcSecurityUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,6 +90,11 @@ public class DbConfigController extends BaseController {
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated Dbconfig dbconfig) {
+        try {
+            JdbcSecurityUtil.validate(dbconfig.getUrl());
+        } catch (IllegalArgumentException e) {
+            return error("连接地址安全校验失败：" + e.getMessage());
+        }
         if (UserConstants.DBCONFIG_NAME_NOT_UNIQUE.equals(dbconfigService.checkConnectNameUnique(dbconfig))) {
             return error("新增数据库连接名称'" + dbconfig.getConnectName() + "'失败，数据库连接名称已存在");
         }
@@ -115,6 +121,11 @@ public class DbConfigController extends BaseController {
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated Dbconfig dbconfig) {
+        try {
+            JdbcSecurityUtil.validate(dbconfig.getUrl());
+        } catch (IllegalArgumentException e) {
+            return error("连接地址安全校验失败：" + e.getMessage());
+        }
         if (UserConstants.POST_NAME_NOT_UNIQUE.equals(dbconfigService.checkConnectNameUnique(dbconfig))) {
             return error("修改数据库连接名称'" + dbconfig.getConnectName() + "'失败，数据库连接名称已存在");
         }
@@ -132,7 +143,10 @@ public class DbConfigController extends BaseController {
     @ResponseBody
     public AjaxResult testConnection(Dbconfig dbconfig) {
         try {
+            JdbcSecurityUtil.validate(dbconfig.getUrl());
             dbconfigService.testConnection(dbconfig);
+        } catch (IllegalArgumentException e) {
+            return error("连接地址安全校验失败：" + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             return error("错误信息:" + e.getMessage());
