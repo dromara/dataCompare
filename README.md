@@ -151,6 +151,6 @@ Check out our other tools and services:
 
 [checkcosmetic.online](https://checkcosmetic.online/)
 
-[checkcosmetic.online](https://checkcosmetic.online/)
+[https://cv-template.online/](https://cv-template.online/)
 
 [BatchCodeChecker.org](https://batchcodechecker.org/)
