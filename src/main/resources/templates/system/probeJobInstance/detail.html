@@ -81,9 +81,11 @@
 
                 <tr data-index="0" th:each="nullResult:${Instance.nullResultList}">
                     <td th:text="${nullResult.nullField}"></td>
-                    <td th:text="${nullResult.nullCnt}"></td>
+                    <!-- 空值详情展示错误问题-->
+                    <td th:text="${nullResult.nullCnt!=null ? nullResult.nullCnt :0 }"></td>
                     <td th:text="${nullResult.totalCnt}"></td>
-                    <td th:text="${nullResult.nullCnt}/${nullResult.totalCnt}"></td>
+                    <!-- 空值详情展示错误问题-->
+                    <td th:text="${nullResult.nullCnt!=null ? nullResult.nullCnt :0 }/${nullResult.totalCnt}"></td>
                 </tr>
 
 
