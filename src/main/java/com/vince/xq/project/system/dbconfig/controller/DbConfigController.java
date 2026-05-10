@@ -128,6 +128,7 @@ public class DbConfigController extends BaseController {
     }
 
 
+    @RequiresPermissions("system:dbconfig:edit")
     @RequestMapping(value = "/testConnection", method = RequestMethod.POST)
     @ResponseBody
     public AjaxResult testConnection(Dbconfig dbconfig) {
