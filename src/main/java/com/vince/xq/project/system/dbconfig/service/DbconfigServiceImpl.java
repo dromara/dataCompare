@@ -8,6 +8,7 @@ import com.vince.xq.common.utils.text.Convert;
 import com.vince.xq.project.common.DbTypeEnum;
 import com.vince.xq.project.system.dbconfig.domain.Dbconfig;
 import com.vince.xq.project.system.dbconfig.mapper.DbconfigMapper;
+import com.vince.xq.common.utils.security.JdbcSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -137,6 +138,7 @@ public class DbconfigServiceImpl implements IDbconfigService {
         } catch (ClassNotFoundException e) {
             throw new Exception("注册驱动失败");
         }
+        JdbcSecurityUtil.validate(dbconfig.getUrl());
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(dbconfig.getUrl(), dbconfig.getUserName(), dbconfig.getPwd());
